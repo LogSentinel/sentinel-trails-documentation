@@ -33,7 +33,7 @@ In order to use the API, you have to authenticate your calls. For that you need 
 
 Libraries and plugins
 *********************
-Here you can find a `Libraries & Plugins <libraries-plugins>` for various languages and frameworks.
+Here you can find a `Libraries & Plugins </libraries-plugins>` for various languages and frameworks.
 
 In addition to the libraries, we support agents and plugins for various systems. The most basic integration can be done at the database level, using the `LogSentinel database agent <https://github.com/LogSentinel/logsentinel-agent/>`_ .
 
@@ -48,4 +48,4 @@ The problem of securely storing audit logs is not a strictly defined one. The re
 * Why not use a custom solution or syslog instead of LogSentinel? Custom solutions rarely cover the necessary features and take time and resources to implement. Using syslog or something like splunk or logstash again doesn’t cover the security requirements. One can get hash chaining ontop of syslog, as shown by one of the cited papers, but it requires additional development and knowledge on the syslog server internals. LogSentinel is a “drop-in” solution, which is used by a very simple and straightforward API.
 * Why not use just timestamping? Timestamping guarantees the integrity of the timestamped groups (blocks) of entries, but does not guarantee that no record was inserted with a date in the past or that no group was deleted. The hash chain provides a strong guarantee that there were no modifications on the entire log
 
-For more details, read the `Advanced Documentation <advanced-documentation>`
+For more details, read the :doc:`Advanced Documentation </advanced-documentation>`
