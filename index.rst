@@ -9,10 +9,10 @@ Contents:
 
    whitepaper
    getting-started
-   API Reference <https://api.logsentinel.com/api>
+   api-reference
    agent/agent-overview
    agent/configuring-agent
-   Agent Properties <https://github.com/LogSentinel/logsentinel-agent/blob/master/configuration.md
+   agent/properties
    libraries-plugins
    integrations
    comparing-db
