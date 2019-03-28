@@ -1,7 +1,7 @@
 How to connect LogSentinel with the Telegram Messenger
 ======================================================
 Setting up anomaly detection alerts
-===================================
+***********************************
 If you would like to set up alerts and get notified via phone for certain types of anomaly activities, follow the below instructions.
 
 Log into your `Sentinel Trails <https://app.logsentinel.com/login>`_ control panel. Navigate to Alerts and click on *Destination* . In the section *Alert Telegram Destinations\*  click on the button *Create.* 

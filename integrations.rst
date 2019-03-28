@@ -1,20 +1,17 @@
 Log Collector Integration
 =========================
 Syslog integration
-==================
+******************
 In order to integrate with syslog, download and run `configure-syslog.sh <https://d381qa7mgybj77.cloudfront.net/wp-content/uploads/2018/12/configure-syslog.sh>`_
 
 Integration with Fluentd
-========================
+******************
 `Fluentd quickstart <https://docs.fluentd.org/v1.0/articles/quickstart>`_
-
-
 
 * install third party plugin
 *  `http_ext <https://github.com/toshitanian/fluent-plugin-out-http-ext>`_ 
 * (requires basic knowledge of ruby gems).
 *  `Info for fluentd custom plugins <https://docs.fluentd.org/v1.0/articles/plugin-development#installing-custom-plugins>`_ example configuration for the plugin to communicate with logsentinel
-
 
 * .. code:: text
 
@@ -51,9 +48,10 @@ Integration with Fluentd
 
 ****  contains mandatory headers for authentication and authorization. Values of Application-Id and Authorization are just an example. Your organization real values must be provided. Authorization header consists of “Basic” string + base64 *encode(:)Additional configuration params are available – see http
 
-ext plugin configuration options https://github.com/toshitanian/fluent-plugin-out-http-ext#configuration-options* Integration with Logstash
-=========================
+`ext plugin configuration options https://github.com/toshitanian/fluent-plugin-out-http-ext#configuration-options>`_ 
 
+Integration with Logstash
+*************************
 
 * Logstash http plugin documentation: https://www.elastic.co/guide/en/logstash/current/plugins-outputs-http.html
 * sample configuration for integration with logsentinel
@@ -91,8 +89,7 @@ grok filter parses mandatory fields from a sample log file in key=value format. 
 Authorization and Application-Id headers contain mandatory headers for authentication and authorization. Values of Application-Id and Authorization are just an example. Your organization real values must be provided. Authorization header consists of “Basic” string + base64_encode(:)
 
 Integration with Nxlog
-======================
-
+**********************
 
 * Nxlog http module documentation https://nxlog.co/documentation/nxlog-user-guide#om_http
 * sample configuration for integration with logsentinel
@@ -124,7 +121,7 @@ nxlog.conf
  </Output>
  
 
-URL is Logsentinel API url
+URL is Logsentinel API url (api.logsentinel.com)
 
 \Authorization and Application-Id headers contain mandatory headers for authentication and authorization. Values of Application-Id and Authorization are just an example. Your organization real values must be provided. Authorization header consists of “Basic” string + base64_encode(:)
 

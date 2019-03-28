@@ -12,32 +12,10 @@ In order to get started, you can take a look at `the simple RESTful API for send
 
 
 
-* .. code:: text
-
- /api/log/simple
-
-
-* – this endpoint accepts just any request body (using POST) and stores it as a new event entry. It is the recommended endpoint if you want full secrecy of the data – you should encrypt it at your end and just send us the encrypted payload. Note that you won’t be able to use the search capabilities that way.
-* .. code:: text
-
- /api/log/{actorId}/{action}
-
-
-* – this endpoint accepts an actorId and an action in addition to the request body. The actorId is normally the userId that performed the action, and the “action” parameter is an action specific to your system that is not about a particular entity – e.g. “PERFORM_SEARCH”, “START_BACKGROUND_PROCESS”, etc.
-* .. code:: text
-
- /api/log/{actorId}/{action}/{entityType}/{entityId}
-
-
-* – this endpoint accepts the actorId, an action (any action, including the recommended INSERT/UPDATE/DELETE/GET and custom ones like CHECKOUT_BASKET, DISCARD_ITEMS, etc) and the entity type and ID. This is intended to store database-related, entity-oriented events. This is expected to be the most often used endpoint in your application. It is also the most transparent one, since generic functionality can be plugged in to automatically send the events to LogSentinel. Some of the client libraries provide such features. It is recommended to pass “old” and “new” values in the body of UPDATE events in order to be able to reconstruct the whole data modification process, similarly to how event sourcing works.
-* .. code:: text
-
- /api/log/{actorId}/auth/{action}
-
-
-* – this endpoint is specifically intended for authentication events – it only takes an actorId and authentication action (LOGIN, LOGIN_FAILED, LOGOUT, SIGNUP, LOGIN_AS (for staff acting as user), AUTO_LOGIN (in case of remember-me functionality)). In order to have some additional legal strength you can have the user sign their login event with their password (e.g.
-*  `like described here <https://techblog.bozho.net/electronic-signature-using-webcrypto-api/>`_ 
-* ) and pass the result of the signing using the custom headers Signature and User-Public-Key
+* `/api/log/simple` – this endpoint accepts just any request body (using POST) and stores it as a new event entry. It is the recommended endpoint if you want full secrecy of the data – you should encrypt it at your end and just send us the encrypted payload. Note that you won’t be able to use the search capabilities that way.
+* `/api/log/{actorId}/{action}` - this endpoint accepts an actorId and an action in addition to the request body. The actorId is normally the userId that performed the action, and the “action” parameter is an action specific to your system that is not about a particular entity – e.g. “PERFORM_SEARCH”, “START_BACKGROUND_PROCESS”, etc.
+* `/api/log/{actorId}/{action}/{entityType}/{entityId}` – this endpoint accepts the actorId, an action (any action, including the recommended INSERT/UPDATE/DELETE/GET and custom ones like CHECKOUT_BASKET, DISCARD_ITEMS, etc) and the entity type and ID. This is intended to store database-related, entity-oriented events. This is expected to be the most often used endpoint in your application. It is also the most transparent one, since generic functionality can be plugged in to automatically send the events to LogSentinel. Some of the client libraries provide such features. It is recommended to pass “old” and “new” values in the body of UPDATE events in order to be able to reconstruct the whole data modification process, similarly to how event sourcing works.
+* `/api/log/{actorId}/auth/{action}` – this endpoint is specifically intended for authentication events – it only takes an actorId and authentication action (LOGIN, LOGIN_FAILED, LOGOUT, SIGNUP, LOGIN_AS (for staff acting as user), AUTO_LOGIN (in case of remember-me functionality)). In order to have some additional legal strength you can have the user sign their login event with their password (e.g. `like described here <https://techblog.bozho.net/electronic-signature-using-webcrypto-api/>`_) and pass the result of the signing using the custom headers Signature and User-Public-Key
 
 If the metadata isn’t critical and doesn’t need to be encrypted, you can only send an encrypted body and still use the more specific endpoints. If bandwidth is an issue, e.g. in IoT context, the body itself can be a hash of the original resource (e.g. a photo)
 
@@ -51,20 +29,14 @@ In order to use the API, you have to authenticate your calls. For that you need 
 
 
 
-* .. code:: text
+* `Authorization: Basic\<base64(organizationId:secret)\>`
 
- Authorization: Basic\<base64(organizationId:secret)\>
-
-
-* .. code:: text
-
- Application-Id:\<applicationId\>
-
+* `Application-Id:\<applicationId\>`
 
 
 Libraries and plugins
 *********************
-Here you can find a `list of available client libraries <https://logsentinel.com/libraries-plugins/>`_ for various languages and frameworks.
+Here you can find a `Libraries & Plugins`_ for various languages and frameworks.
 
 In addition to the libraries, we support agents and plugins for various systems. The most basic integration can be done at the database level, using the `LogSentinel database agent <https://github.com/LogSentinel/logsentinel-agent/>`_ .
 
@@ -79,4 +51,4 @@ The problem of securely storing audit logs is not a strictly defined one. The re
 * Why not use a custom solution or syslog instead of LogSentinel? Custom solutions rarely cover the necessary features and take time and resources to implement. Using syslog or something like splunk or logstash again doesn’t cover the security requirements. One can get hash chaining ontop of syslog, as shown by one of the cited papers, but it requires additional development and knowledge on the syslog server internals. LogSentinel is a “drop-in” solution, which is used by a very simple and straightforward API.
 * Why not use just timestamping? Timestamping guarantees the integrity of the timestamped groups (blocks) of entries, but does not guarantee that no record was inserted with a date in the past or that no group was deleted. The hash chain provides a strong guarantee that there were no modifications on the entire log
 
-For more details, read the `full documentation <https://logsentinel.com/documentation>`_
+For more details, read the `Advanced Documentation`_
