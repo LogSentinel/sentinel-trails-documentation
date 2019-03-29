@@ -33,7 +33,7 @@ In order to use the API, you have to authenticate your calls. For that you need 
 
 Libraries and plugins
 *********************
-Here you can find a `Libraries & Plugins </libraries-plugins>` for various languages and frameworks.
+Here you can find a :doc:`Libraries & Plugins </libraries-plugins>` for various languages and frameworks.
 
 In addition to the libraries, we support agents and plugins for various systems. The most basic integration can be done at the database level, using the `LogSentinel database agent <https://github.com/LogSentinel/logsentinel-agent/>`_ .
 

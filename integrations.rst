@@ -1,17 +1,10 @@
 Log Collector Integration
 =========================
-Syslog integration
-******************
-In order to integrate with syslog, download and run `configure-syslog.sh <https://d381qa7mgybj77.cloudfront.net/wp-content/uploads/2018/12/configure-syslog.sh>`_
-
 Integration with Fluentd
 ******************
 `Fluentd quickstart <https://docs.fluentd.org/v1.0/articles/quickstart>`_
 
-* install third party plugin
-*  `http_ext <https://github.com/toshitanian/fluent-plugin-out-http-ext>`_ 
-* (requires basic knowledge of ruby gems).
-*  `Info for fluentd custom plugins <https://docs.fluentd.org/v1.0/articles/plugin-development#installing-custom-plugins>`_ example configuration for the plugin to communicate with logsentinel
+* install third party plugin `http_ext <https://github.com/toshitanian/fluent-plugin-out-http-ext>`_ (requires basic knowledge of ruby gems). `Info for fluentd custom plugins <https://docs.fluentd.org/v1.0/articles/plugin-development#installing-custom-plugins>`_ example configuration for the plugin to communicate with logsentinel
 
 * .. code:: text
 

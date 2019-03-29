@@ -15,6 +15,12 @@ Contents:
    agent/properties
    libraries-plugins
    integrations
+   syslog
+   gdpr
    comparing-db
    advanced-faq
    telegram
+   onpremise/installation-linux
+   onpremise/installation-windows
+   onpremise/installation-docker
+   onpremise/security
