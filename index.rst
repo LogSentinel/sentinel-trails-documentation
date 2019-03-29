@@ -10,6 +10,7 @@ Contents:
 
    whitepaper
    getting-started
+   advanced-documentation
    api-reference
    searchable-encryption
    libraries-plugins
@@ -40,4 +41,6 @@ Contents:
    onpremise/installation-linux
    onpremise/installation-windows
    onpremise/installation-docker
+   onpremise/whitelabelling
+   onpremise/ldap
    onpremise/security

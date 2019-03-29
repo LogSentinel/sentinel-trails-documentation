@@ -18,8 +18,6 @@ Applications send events to LogSentinel using a RESTful API. That can be done us
 
 When configuring the client, a few mandatory parameters must be specified (explained in the `Getting started guide <https://logsentinel.com/getting-started/>`_ ):
 
-
-
 * ``ApplicationId`` – obtained from the “API credentials” section in the admin panel and passed with a ``Application-Id`` header
 * ``OrganizationId`` – obtained from the “API credentials” section and passed, alongside with the Secret parameter, in ``Authorization`` header
 * ``Secret`` – obtained again from the “API credentials”
@@ -29,10 +27,8 @@ You’d also have to make a choice whether you want to send the full details of 
 Additional headers
 ******************
 
-
 * ``Signature`` - the ``Signature`` contains a digital signature of the whole request body. The signature is an RSA “signature” using a locally (on your application end) generated key that the LogSentinel server does not have. The premise for LogSentinel is that even if a log server is compromised, modification of the records will be detectable. In the unlikely event of a LogSentinel server being compromised, an attacker could insert fake records, but if they don’t possess the private key to sign the records, it will be detectable upon inspection. The algorithm used for signing should be ``SHA256withRSA`` and the result should be Base64 encoded and set in the ``Signature`` header. You can configure your public key in the application configuration so that verification is performed automatically.
 * ``Audit-Log-Entry-Type`` – the type of the audit log entry. Allowed values are ``BUSINESS_LOGIC_ENTRY``, ``DATABASE_QUERY``, ``SYSTEM_EVENT``, ``NETWORK_EVENT``, ``DOCUMENT``. The header is optional and the default value is ``BUSINESS_LOGIC_ENTRY`` as this is the default use case for LogSentinel. However, database monitor agents and other system or network logging solutions can be attached to LogSentinel as well, and this header allows for that.
-* ``
 
 
 Additional parameters
@@ -44,7 +40,7 @@ You can specify any number of additional query parameters (after ? in the URL) f
 * ``actorDepartment`` - the department where the actor belongs
 * ``gdprCorrelationKey`` - a key to correlate the entry with a certain GDPR process from the Article 30 register we provide
 * ``process`` - the name of the business process from which the event originates
-* ``directExternalPush`` - you can designate certain events to be directly pushed to either Ethereum, a qualified electronic timeestamp provider, email or twitter (respective values being ``ETHEREUM``, ``QTSA``, ``EMAIL``, ``TWITTER``). You can find more details in the our :doc:`On-premise security <onpremise/security>_ page.
+* ``directExternalPush`` - you can designate certain events to be directly pushed to either Ethereum, a qualified electronic timeestamp provider, email or twitter (respective values being ``ETHEREUM``, ``QTSA``, ``EMAIL``, ``TWITTER``). You can find more details in the our :doc:`On-premise security </onpremise/security> page.
 * ``encryptedKeywords`` – with it you can enable search in encrypted payload. See more details in the next section
 You can use your custom parameters to perform structured searches by prefixing ``additionalParams.``. For example you can pass 
 

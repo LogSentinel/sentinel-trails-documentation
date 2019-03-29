@@ -16,4 +16,4 @@ Advanced FAQ
 **A:**  It is discouraged, as deleting data from the log is not desirable (the whole purpose of the log is to make it impossible to delete entries). However, depending on the legal analysis, limited personal data can be stored, pursuant to Article 17(3)(e) of GDPR if it would be used “for the establishment, exercise or defence of legal claims.”
 
 **Q:**  What if we don’t want to risk sending sensitive data to a cloud solution? 
-**A:**  LogSentinel supports :doc:`searchable encryption <searchable-encryption>`_ – you encrypt all the data before sending it but you can still search in it through our dashboard without us knowing its contents.
+**A:**  LogSentinel supports :doc:`searchable encryption </searchable-encryption>` – you encrypt all the data before sending it but you can still search in it through our dashboard without us knowing its contents.

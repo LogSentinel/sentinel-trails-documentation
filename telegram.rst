@@ -1,5 +1,5 @@
-How to connect LogSentinel with the Telegram Messenger
-======================================================
+Telegram Messenger Notifications
+================================
 Setting up anomaly detection alerts
 ***********************************
 If you would like to set up alerts and get notified via phone for certain types of anomaly activities, follow the below instructions.

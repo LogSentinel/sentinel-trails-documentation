@@ -3,45 +3,13 @@ Comparing Database State
 In some cases you may want to verify that the state of your database is not tampered with by comparing it to the logs. In order to do that, you have to be able to match log entries to database records. You can do that in several ways:
 
 * when sending an event, store its ID in your database in a designated column
-* pass
-* .. code:: text
+* pass ``entityId`` for each request. The ``entityId` is the ID of your record
 
- entityId
+Note that if you perform updates, multiple log entries will be linked to the same record. Note: you can fetch all entries regarding a single entity by using ``/api/search/entityHistory``
 
+When you want to perform verification, you can fetch records in bulk using the ``/api/search/batch`` endpoint by passing your IDs as ``values``.
 
-* for each request. The entityId is the ID of your record
-
-Note that if you perform updates, multiple log entries will be linked to the same record. Note: you can fetch all entries regarding a single entity by using.. code:: text
-
- /api/search/entityHistory
-
-When you want to perform verification, you can fetch records in bulk using the.. code:: text
-
- /api/search/batch
-
-endpoint by passing your IDs as.. code:: text
-
- values
-
-.
-
-If you pass log entry IDs (the one LogSentinel returned), you should specify.. code:: text
-
- field=ID
-
-. If you want to pass.. code:: text
-
- entityId
-
-, then pass.. code:: text
-
- field=ENTITY_ID
-
-and.. code:: text
-
- entityType=YourEntityType
-
-.
+If you pass log entry IDs (the one LogSentinel returned), you should specify ``field=ID``. If you want to pass ``entityId``, then pass.. ``field=ENTITY_ID`` and ``entityType=YourEntityType``.
 
 You can pass up to 2000 IDs and get the resulting entities. Then you can compare the returned entities to the contents of your database. Again note that when searching by entityId you may get multiple log entries.
 

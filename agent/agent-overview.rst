@@ -20,7 +20,7 @@ Any combination of the above can be configured. Note that for some target types 
 
 All communication between the agent and the Sentinel Trails service is **encrypted** .
 
-Configuration and installation is done through scripts provided by us and you :doc:`can follow the steps here <agent/configuring-agent>`_:
+Configuration and installation is done through scripts provided by us and you :doc:`can follow the steps here </agent/configuring-agent>`:
 
 
 Below is an overview of how the agent fits into the architecture:
