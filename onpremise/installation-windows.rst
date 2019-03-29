@@ -7,6 +7,7 @@ Prerequisites
 *************
 
 Before you begin installation, you should make sure the following prerequisites are met:
+
 * You have downloaded the JDK installer https://www.oracle.com/technetwork/java/javase/downloads/jdk11-downloads-5066655.html (jdk-11.0.2_windows-x64_bin.exe)
 * You have downloaded the ElasticSearch installer https://s3-eu-west-1.amazonaws.com/logsentinel-public/elasticsearch-6.6.1.msi
 * You have downloaded the Cassandra installer https://s3-eu-west-1.amazonaws.com/logsentinel-public/datastax-ddc-64bit-3.9.0-install.msi

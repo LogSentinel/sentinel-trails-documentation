@@ -13,6 +13,7 @@ Contents:
    agent/agent-overview
    agent/configuring-agent
    agent/properties
+   searchable-encryption
    libraries-plugins
    integrations
    syslog
