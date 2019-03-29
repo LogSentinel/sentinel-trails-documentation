@@ -1,8 +1,6 @@
 Welcome to the LogSentinel SentinelTrails Documentation!
 ========================================================
 
-Contents:
-
 .. toctree::
    :maxdepth: 2
    :caption: Main Documentation
