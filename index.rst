@@ -1,18 +1,16 @@
 Welcome to the LogSentinel SentinelTrails Documentation!
-==================================================
+========================================================
 
 Contents:
 
 .. toctree::
    :maxdepth: 2
+   :caption: Main Documentation
    :glob:
 
    whitepaper
    getting-started
    api-reference
-   agent/agent-overview
-   agent/configuring-agent
-   agent/properties
    searchable-encryption
    libraries-plugins
    integrations
@@ -21,6 +19,24 @@ Contents:
    comparing-db
    advanced-faq
    telegram
+
+.. _agent:
+
+.. toctree::
+   :maxdepth: 2
+   :caption: LogSentinel Agent
+   
+   agent/agent-overview
+   agent/configuring-agent
+   agent/properties
+   
+   
+.. _onpremise:
+
+.. toctree::
+   :maxdepth: 2
+   :caption: On-Premise Documentation
+   
    onpremise/installation-linux
    onpremise/installation-windows
    onpremise/installation-docker
