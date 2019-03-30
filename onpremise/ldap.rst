@@ -64,7 +64,7 @@ Active Directory configuration
 In order to authenticate with Windows Active Directory:
 
 * set ``ad.auth.enabled=true`` and ``ldap.auth.enabled=false`` in ``application.properties``
-* set ``ldap.url` to the URL of the Active Directory (without the dc parts)
+* set ``ldap.url`` to the URL of the Active Directory (without the dc parts)
 * set ``ad.auth.domain`` to the domain where users belong in AD
 * roles are retrieved from the ``memberOf`` attributes of the user in AD. Same roles restrictions as in LDAP apply.
 
