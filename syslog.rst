@@ -1,4 +1,4 @@
-Syslog integration
+Syslog Integration
 ==================
 In order to integrate with syslog, there are several options. 
 
@@ -13,8 +13,9 @@ Below is a list of endpoints and ports for each supported variant. We recommend 
 
 We have a syslog configuration script which you can download and run `configure-syslog.sh <https://d381qa7mgybj77.cloudfront.net/wp-content/uploads/2018/12/configure-syslog.sh>`_. It configures a syslog template that allows authenticating against LogSentinel Trails. The important line for authentication is this:
 
-``
+.. code:: text
+
     \$template LogSentinelFormat,\"<%pri%>%protocol-version% %timestamp:::date-rfc3339% %HOSTNAME% %app-name% %procid% %msgid% [logsentinel@$LOGSENTINEL_DISTRIBUTION_ID organizationId=\\\"$LOGSENTINEL_ORG_ID\\\" secret=\\\"$LOGSENTINEL_ORG_SECRET\\\" applicationId=\\\"$LOGSENTINEL_APP_ID\\\" tag=\\\"RsyslogTLS\\\"] %msg%\n\"
-``
+
 
 SonicWall and other devices can be authenticated using a syslogId that is configured per device. You can obtain the syslogId (which effectively comprises of an ID and secret) from the API credentials page.

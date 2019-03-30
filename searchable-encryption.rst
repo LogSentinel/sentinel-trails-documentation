@@ -1,4 +1,4 @@
-Searchable encryption
+Searchable Encryption
 =====================
 LogSentinel’s API provides mechanism of searching in encrypted details. To be able to do this, you must perform the following 3 steps before sending data to the API:
 

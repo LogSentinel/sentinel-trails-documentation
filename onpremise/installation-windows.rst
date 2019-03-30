@@ -1,4 +1,4 @@
-On-premise installation on Windows
+On-premise Installation on Windows
 ==================================
 
 SentinelTrails can be installed on-premise for enterprise customers. It can be done as part of a contract by our staff, or internally by the staff of your company. Below are the instructions for the latter scenario.
