@@ -48,37 +48,37 @@ Configuring the agent
 ---------------------
 Configuring the agent is done via a straightforward YAML file. All properties are `described in the documentation <https://github.com/LogSentinel/logsentinel-agent/blob/master/configuration.md>`_ . Below is a sample setup that listens to a Windows log as well as a MS SQL Audit trail:
 
-``
-applicationId: ba2f0780-5424-11e8-b88d-6a2c1b6625c8
-organizationId: ba2cdc90-5424-11e8-b88d-6a2c1b6625c8
-secret: d8b63c3d82a6ded56b015a3b8617bf376b6aa6c181021abd0d37e5c5ac9941a1
+.. code:: text
 
-# BUSINESS_LOGIC_ENTRY, DATABASE_QUERY, SYSTEM_EVENT
-entryType: BUSINESS_LOGIC_ENTRY
+	applicationId: ba2f0780-5424-11e8-b88d-6a2c1b6625c8
+	organizationId: ba2cdc90-5424-11e8-b88d-6a2c1b6625c8
+	secret: d8b63c3d82a6ded56b015a3b8617bf376b6aa6c181021abd0d37e5c5ac9941a1
 
-# FILE, RELATIONAL_DATABASE, DATABASE_LOG, DIRECTORY, ACCESS_LOG, MSSQL_AUDIT_LOG, LINUX_AUDIT_LOG, AXON_DB, WINDOWS_EVENT_LOG
-targetTypes:
-  - MSSQL_AUDIT_LOG
-  - WINDOWS_EVENT_LOG
+	# BUSINESS_LOGIC_ENTRY, DATABASE_QUERY, SYSTEM_EVENT
+	entryType: BUSINESS_LOGIC_ENTRY
 
-logsentinelBaseUrl: https://api.logsentinel.com
+	# FILE, RELATIONAL_DATABASE, DATABASE_LOG, DIRECTORY, ACCESS_LOG, MSSQL_AUDIT_LOG, LINUX_AUDIT_LOG, AXON_DB, WINDOWS_EVENT_LOG
+	targetTypes:
+	  - MSSQL_AUDIT_LOG
+	  - WINDOWS_EVENT_LOG
 
-includeMacAddress: false
-includeLocalIp: false
-timestampInitialUseCurrent: true
+	logsentinelBaseUrl: https://api.logsentinel.com
 
-windowsEventLogAgent:
-    sendLogsRate: 30000
-    sourceTypes: 
-        - Application
-        - Security
-   
-mssqlAuditLogAgent:
-    jdbcConnectionString: jdbc:sqlserver://localhost:1434;integratedSecurity=true
-    sendLogsRate: 30000
-    mssqlLogsPath: c:\logs\mssqltrail\
+	includeMacAddress: false
+	includeLocalIp: false
+	timestampInitialUseCurrent: true
+
+	windowsEventLogAgent:
+		sendLogsRate: 30000
+		sourceTypes: 
+			- Application
+			- Security
+	   
+	mssqlAuditLogAgent:
+		jdbcConnectionString: jdbc:sqlserver://localhost:1434;integratedSecurity=true
+		sendLogsRate: 30000
+		mssqlLogsPath: c:\logs\mssqltrail\
 	
-``
 
 Conclusion
 ----------

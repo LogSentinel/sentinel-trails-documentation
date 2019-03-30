@@ -12,42 +12,42 @@ In order to authenticate with LDAP server (not Windows AD) the following steps m
 * set ``ldap.url` to pint to your LDAP server
 * let's assume the following ldap tree:
 
-```
-dn: dc=yourOrganization,dc=org
-objectclass: top
-objectclass: domain
-objectclass: extensibleObject
-dc: ourOrganization
+.. code:: text
 
-dn: ou=groups,dc=springframework,dc=org
-objectclass: top
-objectclass: organizationalUnit
-ou: groups
+	dn: dc=yourOrganization,dc=org
+	objectclass: top
+	objectclass: domain
+	objectclass: extensibleObject
+	dc: ourOrganization
 
-dn: ou=people,dc=springframework,dc=org
-objectclass: top
-objectclass: organizationalUnit
-ou: people
+	dn: ou=groups,dc=springframework,dc=org
+	objectclass: top
+	objectclass: organizationalUnit
+	ou: groups
 
-dn: uid=ben@yourOrganization.org,ou=people,dc=yourOrganization,dc=org
-objectclass: top
-objectclass: person
-objectclass: organizationalPerson
-objectclass: inetOrgPerson
-cn: Ben Alexx
-sn: Alex
-organizationId: ba2cbc90-5424-11e8-b88d-6f2c1b6625e8
-uid: ben@yourOrganization.org
-userPassword: {SHA}nFCebWjxfaLbHHG1Qk5UU4trbvQ=
+	dn: ou=people,dc=springframework,dc=org
+	objectclass: top
+	objectclass: organizationalUnit
+	ou: people
 
-dn: cn=logsentinel_developer,ou=groups,dc=springframework,dc=org
-objectclass: top
-objectclass: groupOfUniqueNames
-cn: logsentinel_developer
-ou: logsentinel_developer
-uniqueMember: uid=ben@yourOrganization.org,ou=people,dc=yourOrganization,dc=org
+	dn: uid=ben@yourOrganization.org,ou=people,dc=yourOrganization,dc=org
+	objectclass: top
+	objectclass: person
+	objectclass: organizationalPerson
+	objectclass: inetOrgPerson
+	cn: Ben Alexx
+	sn: Alex
+	organizationId: ba2cbc90-5424-11e8-b88d-6f2c1b6625e8
+	uid: ben@yourOrganization.org
+	userPassword: {SHA}nFCebWjxfaLbHHG1Qk5UU4trbvQ=
 
-```
+	dn: cn=logsentinel_developer,ou=groups,dc=springframework,dc=org
+	objectclass: top
+	objectclass: groupOfUniqueNames
+	cn: logsentinel_developer
+	ou: logsentinel_developer
+	uniqueMember: uid=ben@yourOrganization.org,ou=people,dc=yourOrganization,dc=org
+
 
 * if ldap server doesn't give read access to annonymos users ldap.manager.DN and ldap.manager.password should be set
 * user is searched with ldap.userDN.pattern=uid={0},ou=people  -> ben@yourOrganization.org
