@@ -92,7 +92,7 @@ This endpoint is about authentication-related actions. The allowed values for th
 
 This endpoint allows two additional optional headers – ``Signed-Login-Challenge`` and.. ``User-Public-Key``. In case your users are authenticating using a private key (or a password-derived private key, `e.g. using WebCrypto API <https://techblog.bozho.net/electronic-signature-using-webcrypto-api/>`_ ), you can have them sign a login challenge with their private key and provide the signature and the public key. The login challenge can be the login event details, or a custom challenge that you can pass as an additional parameter. That way their authentication bears more legal strength, as they cannot deny having logged in (the signature has the non-repudiation property).
 
-/api/log/batch
+``/api/log/batch``
 **************
 This method is used for batch inserts. It is generally recommended to insert events as soon as they occur, to avoid any intermediate tampering on the client side. But in some cases it makes sense to group requests (e.g. an agent that listens to the database audit log / query log – making a request for each query might mean excessive number of requests) The method accepts only a request body in the following format (all the fields are optional, but you should specify at least one for the entry to make sense):
 
@@ -118,11 +118,10 @@ This method is used for batch inserts. It is generally recommended to insert eve
 	  
 Note that if you want to provide a signature, you have to provide it in ``additionalParams`` with a field ``signature`` per entry, rather than one signature for the whole request.
 
-/api/search
+``/api/search``
 ***********
 
 With that endpoint you can perform programmatic search on your stored events. The parameters are:
-
 
 
 * ``query`` – the Lucene query to perform against the search engine. You can read more about the query syntax here.
@@ -160,7 +159,7 @@ The response is a list of audit log entry details:
       ]
 
 
-/api/verify?hash={hash}
+``/api/verify?hash={hash}``
 ***********************
 An endpoint for manual verification whether the supplied hash is present in the hash chain. A missing hash would indicate tampering. Note that it is not necessary to use this endpoint, ad automatic log verification is performed by LogSentinel on regular time intervals.
 
@@ -176,8 +175,11 @@ Below is a ``curl``
 
 example to get you started with the API
 
-``
- curl -X POST -u $ORGID:$SECRET --header 'Content-Type: application/json' --header 'Accept: application/json'--header 'Application-Id: 123e4567-e89b-12d3-a456-426655440000' -d '{"details": 1}''https://api.logsentinel.com/api/log/actor-1/ACTION'
-``
+.. code:: text
+
+    curl -X POST -u $ORGID:$SECRET --header 'Content-Type: application/json' \
+	--header 'Accept: application/json' --header 'Application-Id: 123e4567-e89b-12d3-a456-426655440000' \
+	-d '{"details": 1}''https://api.logsentinel.com/api/log/actor-1/ACTION'
+
  
 For more experiments, `obtain API credentials <https://app.logsentinel.com/api-credentials>`_ and experiment on our `API page <https://api.logsentinel.com/api>`_

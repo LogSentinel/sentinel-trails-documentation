@@ -10,6 +10,7 @@ Welcome to the LogSentinel SentinelTrails Documentation!
    getting-started
    advanced-documentation
    api-reference
+   log-verification
    searchable-encryption
    libraries-plugins
    integrations
