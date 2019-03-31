@@ -42,3 +42,4 @@ Welcome to the LogSentinel SentinelTrails Documentation!
    onpremise/whitelabelling
    onpremise/ldap
    onpremise/security
+   onpremise/ha-load-balancing

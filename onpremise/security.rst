@@ -6,6 +6,10 @@ In the cloud version of SentinelTrails we take all necessary operational securit
 Install TLS certificate
 ***********************
 
+.. note::
+	
+	If you are using an Nginx load balancer, you can configure it to terminate the TLS session and in that case you can leave your application node connections to be unencrypted. For more about that, see :doc:`Load Balancing and High Availability </security/ha-load-balancing>`.
+
 The certificate generation process can be seen in `this tutorial <https://docs.oracle.com/cd/E19798-01/821-1841/gjrgy/>`_. The properties that need to be set in ``application.properties`` are:
 
 .. code:: text
@@ -44,7 +48,7 @@ Configure administrator access restrictions
 
 Ideally all nodes should be protected via 2-factor authentication. You can do that by executing the following setup-2fa.sh script:
 
-.. code:: text
+.. code-block:: bash
 
     #!/bin/sh
     # Execute manually AFTER the host has been setup
