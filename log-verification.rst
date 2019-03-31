@@ -28,7 +28,7 @@ Merkle trees are at the core of many blockchain implementations. We support mult
 Incremental verification
 ************************
 
-When you know a certain set of hashes, e.g. those published to Ethereum,  pushed to Twitter, sent via Email, or stored in Glacier, you can request all entires that lie between two known hashes in the chain by using the ```/api/verification/entries`` endpoint <https://api.logsentinel.com/api#!/Verification/getEntriesBetweenHashes>`_.
+When you know a certain set of hashes, e.g. those published to Ethereum,  pushed to Twitter, sent via Email, or stored in Glacier, you can request all entires that lie between two known hashes in the chain by using `the ``/api/verification/entries`` endpoint <https://api.logsentinel.com/api#!/Verification/getEntriesBetweenHashes>`_.
 
 .. note::
 
