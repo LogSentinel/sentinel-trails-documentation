@@ -171,9 +171,7 @@ These endpoints return the content that is hashed given a particular logging req
 
 curl example
 ************
-Below is a ``curl``
-
-example to get you started with the API
+Below is a ``curl`` example to get you started with the API
 
 .. code:: text
 
