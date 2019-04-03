@@ -76,7 +76,7 @@ logstash.conf
 
 grok filter parses mandatory fields from a sample log file in key=value format. This is just an example, you can use any logstash functionality you wish.
 
-Authorization and Application-Id headers contain mandatory headers for authentication and authorization. Values of Application-Id and Authorization are just an example. Your organization real values must be provided. Authorization header consists of “Basic” string + base64_encode(:)
+Authorization and Application-Id headers contain mandatory headers for authentication and authorization. Values of Application-Id and Authorization are just an example. Your organization real values must be provided. Authorization header consists of “Basic” string + base64_encode(<organizationId>:<organizationSecret>)
 
 Integration with Nxlog
 **********************
