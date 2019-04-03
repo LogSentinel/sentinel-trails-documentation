@@ -76,7 +76,7 @@ logstash.conf
 
 grok filter parses mandatory fields from a sample log file in key=value format. This is just an example, you can use any logstash functionality you wish.
 
-Authorization and Application-Id headers contain mandatory headers for authentication and authorization. Values of Application-Id and Authorization are just an example. Your organization real values must be provided. Authorization header consists of “Basic” string + base64_encode(<organizationId>:<organizationSecret>)
+Authorization and Application-Id headers contain mandatory headers for authentication and authorization. Values of Application-Id and Authorization are just an example. Your organization real values must be provided. Authorization header consists of “Basic” string + base64_encode(<your organization id>:<your secret>)
 
 Integration with Nxlog
 **********************
@@ -113,7 +113,7 @@ nxlog.conf
 
 URL is Logsentinel API url (api.logsentinel.com)
 
-\Authorization and Application-Id headers contain mandatory headers for authentication and authorization. Values of Application-Id and Authorization are just an example. Your organization real values must be provided. Authorization header consists of “Basic” string + base64_encode(:)
+\Authorization and Application-Id headers contain mandatory headers for authentication and authorization. Values of Application-Id and Authorization are just an example. Your organization real values must be provided. Authorization header consists of “Basic” string + base64_encode(<your organization id>:<your secret>)
 
 Extracting data from logs here is just simple regex that reads 4 words from log file and fills the mandatory url params (actorId, action , entityType, entityId). You can use all Nxlog functionality to parse and transform your logs as you wish.
 
