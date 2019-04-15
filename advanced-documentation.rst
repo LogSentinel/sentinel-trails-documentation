@@ -96,6 +96,8 @@ This endpoint allows two additional optional headers – ``Signed-Login-Challeng
 **************
 This method is used for batch inserts. It is generally recommended to insert events as soon as they occur, to avoid any intermediate tampering on the client side. But in some cases it makes sense to group requests (e.g. an agent that listens to the database audit log / query log – making a request for each query might mean excessive number of requests) The method accepts only a request body in the following format (all the fields are optional, but you should specify at least one for the entry to make sense):
 
+.. code:: text
+
       [
         {
           "actionData": {
@@ -131,6 +133,8 @@ With that endpoint you can perform programmatic search on your stored events. Th
 * ``pageSize`` - the page size for the search results
 
 The response is a list of audit log entry details:
+
+.. code:: text
 
       [
          {
