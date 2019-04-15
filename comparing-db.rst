@@ -3,7 +3,7 @@ Comparing Database State
 In some cases you may want to verify that the state of your database is not tampered with by comparing it to the logs. In order to do that, you have to be able to match log entries to database records. You can do that in several ways:
 
 * when sending an event, store its ID in your database in a designated column
-* pass ``entityId`` for each request. The ``entityId` is the ID of your record
+* pass ``entityId`` for each request. The ``entityId`` is the ID of your record
 
 Note that if you perform updates, multiple log entries will be linked to the same record. Note: you can fetch all entries regarding a single entity by using ``/api/search/entityHistory``
 
