@@ -21,6 +21,8 @@ Merkle trees are at the core of many blockchain implementations. We support mult
 
 * An `inclusion proof <https://api.logsentinel.com/api#!/Verification/getInclusionProof>`_ guarantees that a particular entry is in the chain. You pass the expected standalone hash of the entry (as per the `Hashable contenet endpoints result <https://api.logsentinel.com/api#/Hash>`_) and then verify whether the proof is valid. 
 
+You can also `read our paper on our use of Merkle trees <https://github.com/LogSentinel/merkle-trees-documentation/releases/download/v0.1/MerkleTrees.pdf>`_.
+
 .. note::
   
     We have built a sample verification application that uses merkle proofs and hashes, published to Ethereum in order to verify the chain. You can `look through its code here <https://github.com/LogSentinel/logsentinel-java-client-verification-ui/>`_
