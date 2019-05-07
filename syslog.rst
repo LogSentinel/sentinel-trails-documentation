@@ -3,7 +3,7 @@ Syslog Integration
 In order to integrate with syslog, there are several options. 
 
 * We support syslog over TCP (plaintext and over TLS) as well as over UDP. 
-* We support both RFC 3164 and RFC 5424. In addition to that, we support Dell SonicWall extended syslog messages
+* We support both RFC 3164 and RFC 5424. In addition to that, we support SonicWall extended syslog messages
 
 Below is a list of endpoints and ports for each supported variant. We recommend TCP over TLS for most installations. However, some setups lack the needed flexibility, so fallback to plaintext TCP or UDP may be needed. In such cases there's an option for a VPN tunnel (for enterprise customers), or a more complicated internal setup with a intermediate syslog forwarder.
 
