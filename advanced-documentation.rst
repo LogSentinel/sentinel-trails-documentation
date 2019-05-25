@@ -40,7 +40,7 @@ You can specify any number of additional query parameters (after ? in the URL) f
 * ``actorDepartment`` - the department where the actor belongs
 * ``gdprCorrelationKey`` - a key to correlate the entry with a certain GDPR process from the Article 30 register we provide
 * ``process`` - the name of the business process from which the event originates
-* ``directExternalPush`` - you can designate certain events to be directly pushed to either Ethereum, a qualified electronic timeestamp provider, email or twitter (respective values being ``ETHEREUM``, ``QTSA``, ``EMAIL``, ``TWITTER``). You can find more details in the our :doc:`On-premise security </onpremise/security> page.
+* ``directExternalPush`` - you can designate certain events to be directly pushed to either Ethereum, a qualified electronic timeestamp provider, email or twitter (respective values being ``ETHEREUM``, ``QTSA``, ``EMAIL``, ``TWITTER``). You can find more details in the our :doc:`On-premise security </onpremise/security>` page.
 * ``encryptedKeywords`` – with it you can enable search in encrypted payload. See more details in the next section
 You can use your custom parameters to perform structured searches by prefixing ``additionalParams.``. For example you can pass 
 
