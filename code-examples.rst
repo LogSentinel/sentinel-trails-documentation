@@ -4,14 +4,14 @@ Code examples
 Below are some code example for basic SentinelDB functionality:
 
 Inserting a single entry
-***********************
+************************
 
 .. content-tabs::
 
 	.. tab-container:: java
 		:title: Java
 		
-		The Java example uses the `sentineldb-java-client <https://github.com/LogSentinel/logsentinel-java-client/>`_ 
+		The Java example uses the `sentineldb-java-client <https://github.com/LogSentinel/sentineldb-java-client/>`_ 
 		
 		.. code-block:: java
 		
@@ -27,41 +27,9 @@ Inserting a single entry
 			    );
 			    System.out.println(result);
 			} catch (ApiException e) {
-			    System.err.println("Exception when calling AuditLogControllerApi#logAuthAction");
-			    e.printStackTrace();
+			    //handle exception
 			}
-			
-	.. tab-container:: C#
-		:title: C#
 		
-		The C# example uses the `logsentinel-dotnet-core-client <https://github.com/LogSentinel/logsentinel-dotnet-core-client/>`_ 
-		
-		.. code-block:: C#
-		
-			LogSentinelClientBuilder builder = LogSentinelClientBuilder
-				.create(applicationId, organizationId, secret);
-
-			builder.setEncryptionKey(encryptionKey); // Optional
-
-			LogSentinelClient client = builder.build();    
-
-			try
-			{
-				var result = client.getAuditLogActions().LogUsingPOST(
-					new ActorData().setActorDisplayName(actorName).setActorRoles(actorRoles)
-						.setActorId(actorId),
-					new ActionData().setDetails(details).setAction(act)
-						.setEntryType(entryType), 
-					applicationId
-				);
-
-				Console.WriteLine(result.LogEntryId);
-			}
-			catch (ApiException e)
-			{
-				Console.WriteLine("Exception when calling AuditLogControllerApi#logAuthAction");
-			}
-			
 	.. tab-container:: php
 		:title: PHP
 		
@@ -88,7 +56,8 @@ Inserting a single entry
 			
 			// EXECUTE:
 			$result = curl_exec($curl);	
-			
+		
+	
 	.. tab-container:: python
 		:title: Python
 		
@@ -102,7 +71,7 @@ Inserting a single entry
 			}'''
 			
 			response = requests.post(url, auth=HTTPBasicAuth(orgId, secret), data=data, headers={"Content-Type": "application/json"})
-		
+
 	.. tab-container:: nodejs
 		:title: Node.js
 
@@ -134,7 +103,7 @@ Inserting a single entry
 
 			req.write(data);
 			req.end();
-			
+
 Inserting batch entries
 ***********************
 
@@ -143,7 +112,7 @@ Inserting batch entries
 	.. tab-container:: java
 		:title: Java
 		
-		The Java example uses the `sentineldb-java-client <https://github.com/LogSentinel/logsentinel-java-client/>`_ 
+		The Java example uses the `sentineldb-java-client <https://github.com/LogSentinel/sentineldb-java-client/>`_ 
 		
 		.. code-block:: java
 		
@@ -170,45 +139,11 @@ Inserting batch entries
 			    // handle exception
 			}
 			
-	.. tab-container:: C#
-		:title: C#
-		
-		The C# example uses the `logsentinel-dotnet-core-client <https://github.com/LogSentinel/logsentinel-dotnet-core-client/>`_ 
-		
-		.. code-block:: C#
-		
-			LogSentinelClientBuilder builder = LogSentinelClientBuilder
-				.create(applicationId, organizationId, secret);
-
-			builder.setEncryptionKey(encryptionKey); // Optional
-
-			LogSentinelClient client = builder.build();    
-
-			try
-			{
-				List<BatchLogRequestEntry> batch = new List<BatchLogRequestEntry>();
-				for (int i = 0; i < COUNT; i++) {
-				    string details = "detais" + i;
-
-				    BatchLogRequestEntry entry = new BatchLogRequestEntry(
-				    	new ActorData().setActorDisplayName(actorName).setActorRoles(actorRoles).setActorId(actorId),
-					new ActionData().setDetails(details).setAction(act).setEntryType(entryType));
-				
-			    		batch.Add(entry);
-				}
-				var result = client.getAuditLogActions().LogBatchUsingPOST1(batch, applicationId);
-				Console.WriteLine(result.LogEntryId);
-			}
-			catch (ApiException e)
-			{
-				Console.WriteLine("Exception when calling AuditLogControllerApi#logAuthAction");
-			}
-			
-		.. tab-container:: php
+	.. tab-container:: php
 		:title: PHP
 		
 		.. code-block:: php
-		
+			
 			$data = <<<EOT
 			[{
 			  "actorData": {
@@ -255,11 +190,11 @@ Inserting batch entries
 			// EXECUTE:
 			$result = curl_exec($curl);	
 			
-	.. tab-container:: python
+	.. tab-container:: Python
 		:title: Python
 		
 		.. code-block:: python
-			
+		
 			import requests
 			url = 'https://app.logsentinel.com/api/log/batch');
 			data = '''[{
@@ -348,5 +283,4 @@ Inserting batch entries
 
 			req.write(data);
 			req.end();
-			
 			
