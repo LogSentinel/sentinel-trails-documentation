@@ -3,7 +3,7 @@ Code examples
 
 Below are some code example for basic SentinelDB functionality:
 
-Creating a user profile
+Inserting a single entry
 ***********************
 
 .. content-tabs::
@@ -11,24 +11,57 @@ Creating a user profile
 	.. tab-container:: java
 		:title: Java
 		
-		The Java example uses the `sentineldb-java-client <https://github.com/LogSentinel/sentineldb-java-client/>`_ 
+		The Java example uses the `sentineldb-java-client <https://github.com/LogSentinel/logsentinel-java-client/>`_ 
 		
 		.. code-block:: java
 		
-			SentinelDBClient client = SentinelDBClientBuilder.create(orgId, secret).build();
+			//credentials obtained after registration
+			LogSentinelClientBuilder builder = LogSentinelClientBuilder
+			    .create(applicationId, organizationId, secret);
+			LogSentinelClient client = builder.build();
+
+			try {
+			    LogResponse result = client.getAuditLogActions().log(
+				new ActorData(actorId).setActorDisplayName(username).setActorRoles(roles), 
+				new ActionData(details).setAction(action)
+			    );
+			    System.out.println(result);
+			} catch (ApiException e) {
+			    System.err.println("Exception when calling AuditLogControllerApi#logAuthAction");
+			    e.printStackTrace();
+			}
 			
-			Map<String, String> attributes = new HashMap<>();
-			attributes.put("firstName", "John");
-			attributes.put("lastName", "Smith");
-			attributes.put("city", "London");
-			
-			UserRequest user = new UserRequest();
-			user.setEmail("john.smith@example.com");
-			user.setPassword("password");
-			user.setAttributes(gson.toJson(attributes));
-			
-			UUID id = client.getUserActions().createUser(datastoreId, user, null).getId();
+	.. tab-container:: C#
+		:title: C#
 		
+		The C# example uses the `logsentinel-dotnet-core-client <https://github.com/LogSentinel/logsentinel-dotnet-core-client/>`_ 
+		
+		.. code-block:: C#
+		
+			LogSentinelClientBuilder builder = LogSentinelClientBuilder
+				.create(applicationId, organizationId, secret);
+
+			builder.setEncryptionKey(encryptionKey); // Optional
+
+			LogSentinelClient client = builder.build();    
+
+			try
+			{
+				var result = client.getAuditLogActions().LogUsingPOST(
+					new ActorData().setActorDisplayName(actorName).setActorRoles(actorRoles)
+						.setActorId(actorId),
+					new ActionData().setDetails(details).setAction(act)
+						.setEntryType(entryType), 
+					applicationId
+				);
+
+				Console.WriteLine(result.LogEntryId);
+			}
+			catch (ApiException e)
+			{
+				Console.WriteLine("Exception when calling AuditLogControllerApi#logAuthAction");
+			}
+			
 	.. tab-container:: php
 		:title: PHP
 		
@@ -36,13 +69,8 @@ Creating a user profile
 		
 			$data = <<<EOT
 			{
-			  "email": "john.smith@example.com",
-			  "password": "password",
-			  "attributes": {
-				"firstName": "John",
-				"lastName": "Smith",
-				"city": "London"
-			  }
+			  "detail1": "detail 1",
+			  "detail2": "detail 2"
 			}
 			EOT;
 			
@@ -50,7 +78,7 @@ Creating a user profile
 			curl_setopt($curl, CURLOPT_POST, 1);
 			curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
 			
-			curl_setopt($curl, CURLOPT_URL, 'https://api.db.logsentinel.com/api/user/datastore/' + datastoreId);
+			curl_setopt($curl, CURLOPT_URL, 'https://app.logsentinel.com/api/log/' + actorId + '/' + action + '/' + entityType + '/' + entityId);
 			curl_setopt($curl, CURLOPT_HTTPHEADER, array(
 				'Content-Type: application/json'
 			));
@@ -59,28 +87,22 @@ Creating a user profile
 			curl_setopt($curl, CURLOPT_USERPWD, $ORG_ID . ":" . $SECRET);
 			
 			// EXECUTE:
-			$result = curl_exec($curl);
-		
-	
+			$result = curl_exec($curl);	
+			
 	.. tab-container:: python
 		:title: Python
 		
 		.. code-block:: python
 			
 			import requests
-			url = 'https://api.db.logsentinel.com/api/user/datastore/' + datastoreId;
+			url = 'https://app.logsentinel.com/api/log/' + actorId + '/' + action + '/' + entityType + '/' + entityId);
 			data = '''{
-			  "email": "john.smith@example.com",
-			  "password": "password",
-			  "attributes": {
-				"firstName": "John",
-				"lastName": "Smith",
-				"city": "London"
-			  }
+			  "detail1": "detail 1",
+			  "detail2": "detail 2"
 			}'''
 			
 			response = requests.post(url, auth=HTTPBasicAuth(orgId, secret), data=data, headers={"Content-Type": "application/json"})
-
+		
 	.. tab-container:: nodejs
 		:title: Node.js
 
@@ -88,20 +110,15 @@ Creating a user profile
 		
 			var https = require('https');
 			var data = JSON.stringify({
-			  'email': 'john.smith@example.com',
-			  'password': 'password'
-			  'attributes': {
-				'firstName': 'John',
-				'lastName': 'Smith',
-				'city': 'London'
-			  }
+			  "detail1": "detail 1",
+			  "detail2": "detail 2"
 			});
 
 			var auth = 'Basic ' + Buffer.from(ORG_ID + ':' + ORG_SECRET).toString('base64')
 
 			var options = {
-			  host: 'api.db.logsentinel.com',
-			  path: '/api/user/datastore/' + DATASTORE_ID,
+			  host: 'app.logsentinel.com',
+			  path: '/api/log/' + actorId + '/' + action + '/' + entityType + '/' + entityId,
 			  method: 'POST',
 			  headers: {
 				'Content-Type': 'application/json; charset=utf-8',
@@ -111,111 +128,14 @@ Creating a user profile
 			};
 
 			var req = https.request(options, function(res) {
-			  var id = JSON.parse(response.body).id
-			  //...
-			});
-
-			req.write(data);
-			req.end();
-
-Creating a record
-***********************
-
-.. content-tabs::
-
-	.. tab-container:: java
-		:title: Java
-		
-		The Java example uses the `sentineldb-java-client <https://github.com/LogSentinel/sentineldb-java-client/>`_ 
-		
-		.. code-block:: java
-		
-			SentinelDBClient client = SentinelDBClientBuilder.create(orgId, secret).build();
-
-			Map<String, String> attributes = new HashMap<>();
-			attributes.put("name", "Record name");
-			attributes.put("details", "Some details");
-			attributes.put("code", "LDR354");
-
-			UUID id = client.getRecordActions().createRecord(gson.toJson(attributes), datastoreId, "ActorId", null, "Document").getId(); 
-			
-	.. tab-container:: php
-		:title: PHP
-		
-		.. code-block:: php
-			
-			$data = <<<EOT				
-				{
-				  "name": "Record Name",
-				  "details": "Some details",
-				  "code": "LDR354"
-				}
-			EOT;
-			
-			$curl = curl_init();
-			curl_setopt($curl, CURLOPT_POST, 1);
-			curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
-			
-			curl_setopt($curl, CURLOPT_URL, 'https://api.db.logsentinel.com/api/record/datastore/' + datastoreId + '?type=Document');
-			curl_setopt($curl, CURLOPT_HTTPHEADER, array(
-				'Content-Type: application/json'
-			));
-			curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-			curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-			curl_setopt($curl, CURLOPT_USERPWD, $ORG_ID . ":" . $SECRET);
-			
-			// EXECUTE:
-			$result = curl_exec($curl);
-			
-	.. tab-container:: Python
-		:title: Python
-		
-		.. code-block:: python
-		
-			import requests
-			url = 'https://api.db.logsentinel.com/api/record/datastore/' + datastoreId + '?type=Document';
-			data = '''{
-			  "name": "Record Name",
-			  "details": "Some details",
-			  "code": "LDR354"
-			}'''
-
-			response = requests.post(url, auth=HTTPBasicAuth(orgId, secret), data=data, headers={"Content-Type": "application/json"})
-			
-	.. tab-container:: nodejs
-		:title: Node.js
-
-		.. code-block:: javascript
-		
-			var https = require('https');
-			var data = JSON.stringify({
-			   'name': 'Record Name',
-			   'details': 'Some details',
-			   'code': 'LDR354'
-			});
-
-			var auth = 'Basic ' + Buffer.from(ORG_ID + ':' + ORG_SECRET).toString('base64')
-
-			var options = {
-			  host: 'api.db.logsentinel.com',
-			  path: '/api/record/datastore/' + DATASTORE_ID + '?type=Document',
-			  method: 'POST',
-			  headers: {
-				'Content-Type': 'application/json; charset=utf-8',
-				'Content-Length': data.length
-				'Authorization': auth;
-			  }
-			};
-
-			var req = https.request(options, function(res) {
-			  var id = JSON.parse(response.body).id
+			  var res = JSON.parse(response.body)
 			  //...
 			});
 
 			req.write(data);
 			req.end();
 			
-Searching records
+Inserting batch entries
 ***********************
 
 .. content-tabs::
@@ -223,294 +143,66 @@ Searching records
 	.. tab-container:: java
 		:title: Java
 		
-		The Java example uses the `sentineldb-java-client <https://github.com/LogSentinel/sentineldb-java-client/>`_ 
+		The Java example uses the `sentineldb-java-client <https://github.com/LogSentinel/logsentinel-java-client/>`_ 
 		
 		.. code-block:: java
 		
-			SentinelDBClient client = SentinelDBClientBuilder.create(orgId, secret).build();
+			//credentials obtained after registration
+			LogSentinelClientBuilder builder = LogSentinelClientBuilder
+			    .create(applicationId, organizationId, secret);
+			LogSentinelClient client = builder.build();
+			
+			List<BatchLogRequestEntry> batch = new ArrayList<>();
+			for (int i = 0; i < COUNT; i++) {
+			    String details = "detais" + i;
 
-			Map<String, String> searchRecordRequest = new HashMap<>();
-			searchRecordRequest.put("code", "LDR354");
-			searchRecordRequest.put("name", "Record name");
+			    BatchLogRequestEntry entry = new BatchLogRequestEntry();
+			    entry.setActionData(new ActionData(details).setAction(action).setBinaryContent(false) );
+			    entry.setActorData(new ActorData(actorId).setActorDisplayName(username).setActorRoles(roles).setDepartment("IT"));
+			    entry.setAdditionalParams(new HashMap<>());
 
-			long start = System.currentTimeMillis() - 1000*60*60*24L;
-			long end = System.currentTimeMillis();
-			int pageNumber = 0;
-			int pageSize = 10;
-			String type = "Document";
-			SearchSchemaField.VisibilityLevelEnum visibilityLevel = SearchSchemaField.VisibilityLevelEnum.PUBLIC;
-
-			List<Record> searchResult = client.getSearchActions().searchRecords(
-				datastoreId, searchRecordRequest, type, null, end, pageNumber, pageSize, null, start, visibilityLevel);
-				
-	.. tab-container:: php
-		:title: PHP
-		
-		.. code-block:: php
-		
-			$searchReuqest = <<<EOT
-			{
-			  "name": "Record Name",
-			  "code": "LDR354"
+			    batch.add(entry);
 			}
-			EOT;
-			
-			$start = time() * 1000 - 1000*60*60*24L;
-			$end = time() * 1000;
-			$pageNumber = 0;
-			$pageSize = 10;
-			$type = 'Document';
-			$visibilityLevel = 'PUBLIC';
-			
-			$curl = curl_init();
-			curl_setopt($curl, CURLOPT_POST, 1);
-			curl_setopt($curl, CURLOPT_POSTFIELDS, $searchReuqest);
-			
-			curl_setopt($curl, CURLOPT_URL, 'https://api.db.logsentinel.com/api/search/records/' + type  + '/datastore/' + datastoreId + '?start=' + start + &end=' + end + '&pageNumber=' + pageNumber + '&pageSize=' + pageSize + '&visibilityLevel=' + visibilityLevel);
-			curl_setopt($curl, CURLOPT_HTTPHEADER, array(
-				'Content-Type: application/json'
-			));
-			curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-			curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-			curl_setopt($curl, CURLOPT_USERPWD, $ORG_ID . ":" . $SECRET);
-			
-			// EXECUTE:
-			$result = curl_exec($curl);
-			
-	.. tab-container:: Python
-		:title: Python
-		
-		.. code-block:: python
-		
-			import requests
-			import time
-			
-			searchRequest = '''
-				{
-				  "name": "Record Name",
-				  "code": "LDR354"
-				}
-			'''
 
-			start = int(round(time.time() * 1000)) - 1000*60*60*24L;
-			end  = int(round(time.time() * 1000));
-			pageNumber = 0;
-			pageSize = 10;
-			type = 'Document';
-			visibilityLevel = 'PUBLIC';
-
-			url = 'https://api.db.logsentinel.com/api/search/records/' + type  + '/datastore/' + datastoreId + '?start=' + start + &end=' + end + '&pageNumber=' + pageNumber + '&pageSize=' + pageSize + '&visibilityLevel=' + visibilityLevel;
-
-			response = requests.post(url, auth=HTTPBasicAuth(orgId, secret), data=searchRequest, headers={"Content-Type": "application/json"})
-			
-	.. tab-container:: nodejs
-		:title: Node.js
-
-		.. code-block:: javascript
-		
-			var https = require('https');
-			
-			var searchRequest = JSON.stringify({
-			  "name": "Record Name",
-			  "code": "LDR354"
-			});
-
-			var start = new Date().getTime() - 1000*60*60*24L;
-			var end  = new Date().getTime()
-			var pageNumber = 0;
-			var pageSize = 10;
-			var type = 'Document';
-			var visibilityLevel = 'PUBLIC';
-
-
-			var auth = 'Basic ' + Buffer.from(ORG_ID + ':' + ORG_SECRET).toString('base64')
-
-			var options = {
-			  host: 'api.db.logsentinel.com',
-			  path: '/api/search/records/' + type  + '/datastore/' + datastoreId + '?start=' + start + &end=' + end + '&pageNumber=' + pageNumber + '&pageSize=' + pageSize + '&visibilityLevel=' + visibilityLevel,
-			  method: 'POST',
-			  headers: {
-				'Content-Type': 'application/json; charset=utf-8',
-				'Content-Length': data.length
-				'Authorization': auth;
-			  }
-			};
-
-			var req = https.request(options, function(res) {
-			  var result = JSON.parse(response.body)
-			  //...
-			});
-
-			req.write(searchRequest);
-			req.end();
-			
-Searching users
-***********************
-
-.. content-tabs::
-
-	.. tab-container:: java
-		:title: Java
-		
-		The Java example uses the `sentineldb-java-client <https://github.com/LogSentinel/sentineldb-java-client/>`_ 
-		
-		.. code-block:: java
-		
-			SentinelDBClient client = SentinelDBClientBuilder.create(orgId, secret).build();
-
-			Map<String, String> searchUserRequest = new HashMap<>();
-			searchUserRequest.put("city", "London");
-			searchUserRequest.put("name", "John");
-
-			long start = System.currentTimeMillis() - 1000*60*60*24L;
-			long end = System.currentTimeMillis();
-			int pageNumber = 0;
-			int pageSize = 10;
-			String type = "Document";
-			SearchSchemaField.VisibilityLevelEnum visibilityLevel = SearchSchemaField.VisibilityLevelEnum.PUBLIC;
-
-			List<Record> searchResult = client.getSearchActions().searchUsers(
-                datastoreId, searchUserRequest, end, pageNumber, pageSize, null, start, visibilityLevel);
-				
-	.. tab-container:: php
-		:title: PHP
-		
-		.. code-block:: php
-		
-			$searchReuqest = <<<EOT
-			{
-			  "city": "London",
-			  "name": "John"
+			try {
+			    client.getAuditLogActions().logBatch(batch);
+			} catch (ApiException e) {
+			    // handle exception
 			}
-			EOT;
 			
-			$start = time() * 1000 - 1000*60*60*24L;
-			$end = time() * 1000;
-			$pageNumber = 0;
-			$pageSize = 10;
-			$type = 'Document';
-			$visibilityLevel = 'PUBLIC';
-			
-			$curl = curl_init();
-			curl_setopt($curl, CURLOPT_POST, 1);
-			curl_setopt($curl, CURLOPT_POSTFIELDS, $searchReuqest);
-			
-			curl_setopt($curl, CURLOPT_URL, 'https://api.db.logsentinel.com/api/search/users/datastore/' + datastoreId + '?start=' + start + &end=' + end + '&pageNumber=' + pageNumber + '&pageSize=' + pageSize + '&visibilityLevel=' + visibilityLevel);
-			curl_setopt($curl, CURLOPT_HTTPHEADER, array(
-				'Content-Type: application/json'
-			));
-			curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-			curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-			curl_setopt($curl, CURLOPT_USERPWD, $ORG_ID . ":" . $SECRET);
-			
-			// EXECUTE:
-			$result = curl_exec($curl);
-			
-	.. tab-container:: Python
-		:title: Python
+	.. tab-container:: C#
+		:title: C#
 		
-		.. code-block:: python
+		The C# example uses the `logsentinel-dotnet-core-client <https://github.com/LogSentinel/logsentinel-dotnet-core-client/>`_ 
 		
-			import requests
-			import time
-			
-			searchRequest = '''
-				{
-				  "city": "London",
-				  "name": "John"
+		.. code-block:: C#
+		
+			LogSentinelClientBuilder builder = LogSentinelClientBuilder
+				.create(applicationId, organizationId, secret);
+
+			builder.setEncryptionKey(encryptionKey); // Optional
+
+			LogSentinelClient client = builder.build();    
+
+			try
+			{
+				List<BatchLogRequestEntry> batch = new List<BatchLogRequestEntry>();
+				for (int i = 0; i < COUNT; i++) {
+				    string details = "detais" + i;
+
+				    BatchLogRequestEntry entry = new BatchLogRequestEntry(
+				    	new ActorData().setActorDisplayName(actorName).setActorRoles(actorRoles).setActorId(actorId),
+					new ActionData().setDetails(details).setAction(act).setEntryType(entryType));
+				
+			    		batch.Add(entry);
 				}
-			'''
-
-			start = int(round(time.time() * 1000)) - 1000*60*60*24L;
-			end  = int(round(time.time() * 1000));
-			pageNumber = 0;
-			pageSize = 10;
-			type = 'Document';
-			visibilityLevel = 'PUBLIC';
-
-			url = 'https://api.db.logsentinel.com/api/search/users/datastore/' + datastoreId + '?start=' + start + &end=' + end + '&pageNumber=' + pageNumber + '&pageSize=' + pageSize + '&visibilityLevel=' + visibilityLevel;
-
-
-			response = requests.post(url, auth=HTTPBasicAuth(orgId, secret), data=searchRequest, headers={"Content-Type": "application/json"})
-			
-	.. tab-container:: nodejs
-		:title: Node.js
-
-		.. code-block:: javascript
-		
-			var https = require('https');
-		
-			var searchRequest = JSON.stringify({
-			   "city": "London",
-			   "name": "John"
-			});
-
-			var start = new Date().getTime() - 1000*60*60*24L;
-			var end  = new Date().getTime()
-			var pageNumber = 0;
-			var pageSize = 10;
-			var type = 'Document';
-			var visibilityLevel = 'PUBLIC';
-
-
-			var auth = 'Basic ' + Buffer.from(ORG_ID + ':' + ORG_SECRET).toString('base64')
-
-			var options = {
-			  host: 'api.db.logsentinel.com',
-			  path: '/api/search/records/datastore/' + datastoreId + '?start=' + start + &end=' + end + '&pageNumber=' + pageNumber + '&pageSize=' + pageSize + '&visibilityLevel=' + visibilityLevel,
-			  method: 'POST',
-			  headers: {
-				'Content-Type': 'application/json; charset=utf-8',
-				'Content-Length': data.length
-				'Authorization': auth;
-			  }
-			};
-
-			var req = https.request(options, function(res) {
-			  var result = JSON.parse(response.body)
-			  //...
-			});
-
-			req.write(searchRequest);
-			req.end();
-
-
-Batch insert
-***********************
-
-.. content-tabs::
-
-	.. tab-container:: java
-		:title: Java
-		
-		The Java example uses the `sentineldb-java-client <https://github.com/LogSentinel/sentineldb-java-client/>`_ 
-		
-		.. code-block:: java
-		
-			SentinelDBClient client = SentinelDBClientBuilder.create(orgId, secret).build();
-
-			List<BatchRequestItem> batch = new ArrayList<>();
-
-			Map<String, String> attributes = new HashMap<>();
-			attributes.put("firstName", "John");
-			attributes.put("lastName", "Smith");
-			attributes.put("city", "London");
-			BatchRequestItem batchRequestItem = new BatchRequestItem();
-			batchRequestItem.setProperties(attributes);
-			batchRequestItem.setEntityType(BatchRequestItem.EntityTypeEnum.RECORD);
-			batch.add(batchRequestItem);
-
-			attributes = new HashMap<>();
-			attributes.put("firstName", "Jane");
-			attributes.put("lastName", "Smith");
-			attributes.put("city", "Dublin");
-
-			batchRequestItem = new BatchRequestItem();
-			batchRequestItem.setProperties(attributes);
-			batchRequestItem.setEntityType(BatchRequestItem.EntityTypeEnum.RECORD);
-			batch.add(batchRequestItem);
-
-			client.getBatchApi().batchInsert(batch, datastoreId);
+				var result = client.getAuditLogActions().LogBatchUsingPOST1(batch, applicationId);
+				Console.WriteLine(result.LogEntryId);
+			}
+			catch (ApiException e)
+			{
+				Console.WriteLine("Exception when calling AuditLogControllerApi#logAuthAction");
+			}
 			
 	.. tab-container:: php
 		:title: PHP
@@ -519,28 +211,40 @@ Batch insert
 		
 			$data = <<<EOT
 			[{
-			  "entityType": "RECORD",
-			  "properties": {
-				"name": "Record Name",
-				"details": "Some details",
-				"code": "LDR354"
-			  }
-			},
-			{
-			  "entityType": "RECORD",
-			  "properties": {
-				"name": "Another Record Name",
-				"details": "Some other details",
-				"code": "HFS322"
-			  }
-			}]
+			  "actorData": {
+			    "actorId":"actor1",
+			    "actorDisplayName":"actor 1",
+			    "department":"IT"
+			  },
+			  "actionData": {
+			    "action":"VIEW",
+			    "entityId":"123",
+			    "entityType":"Deposit",
+			    "details":{
+				  "detail1": "detail 1",
+				  "detail2": "detail 2"
+			    }
+			},{
+			  "actorData": {
+			    "actorId":"actor2",
+			    "actorDisplayName":"actor 2",
+			    "department":"IT"
+			  },
+			  "actionData": {
+			    "action":"WITHDRAW",
+			    "entityId":"123",
+			    "entityType":"Deposit",
+			    "details":{
+				  "detail1": "detail 1",
+				  "detail2": "detail 2"
+			    }]
 			EOT;
 			
 			$curl = curl_init();
 			curl_setopt($curl, CURLOPT_POST, 1);
 			curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
 			
-			curl_setopt($curl, CURLOPT_URL, 'https://api.db.logsentinel.com/api/batch/insert/' + datastoreId );
+			curl_setopt($curl, CURLOPT_URL, 'https://app.logsentinel.com/api/log/batch');
 			curl_setopt($curl, CURLOPT_HTTPHEADER, array(
 				'Content-Type: application/json'
 			));
@@ -549,34 +253,44 @@ Batch insert
 			curl_setopt($curl, CURLOPT_USERPWD, $ORG_ID . ":" . $SECRET);
 			
 			// EXECUTE:
-			$result = curl_exec($curl);
+			$result = curl_exec($curl);	
 			
-	.. tab-container:: Python
+	.. tab-container:: python
 		:title: Python
-
+		
 		.. code-block:: python
-		
+			
 			import requests
-		
-			url = 'https://api.db.logsentinel.com/api/batch/insert/' + datastoreId;
+			url = 'https://app.logsentinel.com/api/log/batch');
 			data = '''[{
-			  "entityType": "RECORD",
-			  "properties": {
-				"name": "Record Name",
-				"details": "Some details",
-				"code": "LDR354"
-			  }
-			},
-			{
-			  "entityType": "RECORD",
-			  "properties": {
-				"name": "Another Record Name",
-				"details": "Some other details",
-				"code": "HFS322"
-			  }
-			}]
-			'''
-
+			  "actorData": {
+			    "actorId":"actor1",
+			    "actorDisplayName":"actor 1",
+			    "department":"IT"
+			  },
+			  "actionData": {
+			    "action":"VIEW",
+			    "entityId":"123",
+			    "entityType":"Deposit",
+			    "details":{
+				  "detail1": "detail 1",
+				  "detail2": "detail 2"
+			    }
+			},{
+			  "actorData": {
+			    "actorId":"actor2",
+			    "actorDisplayName":"actor 2",
+			    "department":"IT"
+			  },
+			  "actionData": {
+			    "action":"WITHDRAW",
+			    "entityId":"123",
+			    "entityType":"Deposit",
+			    "details":{
+				  "detail1": "detail 1",
+				  "detail2": "detail 2"
+			    }]'''
+			
 			response = requests.post(url, auth=HTTPBasicAuth(orgId, secret), data=data, headers={"Content-Type": "application/json"})
 			
 	.. tab-container:: nodejs
@@ -586,27 +300,39 @@ Batch insert
 		
 			var https = require('https');
 			var data = JSON.stringify([{
-			  "entityType": "RECORD",
-			  "properties": {
-				"name": "Record Name",
-				"details": "Some details",
-				"code": "LDR354"
-			  }
-			},
-			{
-			  "entityType": "RECORD",
-			  "properties": {
-				"name": "Another Record Name",
-				"details": "Some other details",
-				"code": "HFS322"
-			  }
-			}]);
+			  "actorData": {
+			    "actorId":"actor1",
+			    "actorDisplayName":"actor 1",
+			    "department":"IT"
+			  },
+			  "actionData": {
+			    "action":"VIEW",
+			    "entityId":"123",
+			    "entityType":"Deposit",
+			    "details":{
+				  "detail1": "detail 1",
+				  "detail2": "detail 2"
+			    }
+			},{
+			  "actorData": {
+			    "actorId":"actor2",
+			    "actorDisplayName":"actor 2",
+			    "department":"IT"
+			  },
+			  "actionData": {
+			    "action":"WITHDRAW",
+			    "entityId":"123",
+			    "entityType":"Deposit",
+			    "details":{
+				  "detail1": "detail 1",
+				  "detail2": "detail 2"
+			    }]);
 
 			var auth = 'Basic ' + Buffer.from(ORG_ID + ':' + ORG_SECRET).toString('base64')
 
 			var options = {
-			  host: 'api.db.logsentinel.com',
-			  path: '/api/batch/insert/' + datastoreId,
+			  host: 'app.logsentinel.com',
+			  path: '/api/log/batch',
 			  method: 'POST',
 			  headers: {
 				'Content-Type': 'application/json; charset=utf-8',
@@ -616,7 +342,7 @@ Batch insert
 			};
 
 			var req = https.request(options, function(res) {
-			  var result = JSON.parse(response.body)
+			  var res = JSON.parse(response.body)
 			  //...
 			});
 
