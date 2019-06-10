@@ -36,7 +36,7 @@ Inserting a single entry
 		
 		The C# example uses the `logsentinel-dotnet-core-client <https://github.com/LogSentinel/logsentinel-dotnet-core-client/>`_ 
 		
-		.. code-block:: C#
+		.. code-block:: java
 		
 			LogSentinelClientBuilder builder = LogSentinelClientBuilder
 				.create(applicationId, organizationId, secret);
@@ -175,7 +175,7 @@ Inserting batch entries
 		
 		The C# example uses the `logsentinel-dotnet-core-client <https://github.com/LogSentinel/logsentinel-dotnet-core-client/>`_ 
 		
-		.. code-block:: C#
+		.. code-block:: java
 		
 			LogSentinelClientBuilder builder = LogSentinelClientBuilder
 				.create(applicationId, organizationId, secret);
