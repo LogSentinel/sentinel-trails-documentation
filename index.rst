@@ -8,6 +8,7 @@ Welcome to the LogSentinel SentinelTrails Documentation!
 
    whitepaper
    getting-started
+   code-examples
    advanced-documentation
    api-reference
    log-verification
