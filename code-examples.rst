@@ -11,7 +11,7 @@ Inserting a single entry
 	.. tab-container:: java
 		:title: Java
 		
-		The Java example uses the `sentineldb-java-client <https://github.com/LogSentinel/logsentinel-java-client/>`_ 
+		The Java example uses the `logsentinel-java-client <https://github.com/LogSentinel/logsentinel-java-client/>`_ 
 		
 		.. code-block:: java
 		
@@ -142,7 +142,7 @@ Inserting batch entries
 	.. tab-container:: java
 		:title: Java
 		
-		The Java example uses the `sentineldb-java-client <https://github.com/LogSentinel/logsentinel-java-client/>`_ 
+		The Java example uses the `logsentinel-java-client <https://github.com/LogSentinel/logsentinel-java-client/>`_ 
 		
 		.. code-block:: java
 		
