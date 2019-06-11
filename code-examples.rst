@@ -38,7 +38,29 @@ Inserting a single entry
 		
 		.. code-block:: java
 		
-			Console.WriteLine(result.LogEntryId);
+			LogSentinelClientBuilder builder = LogSentinelClientBuilder
+				.create(applicationId, organizationId, secret);
+
+			builder.setEncryptionKey(encryptionKey); // Optional
+
+			LogSentinelClient client = builder.build();    
+
+			try
+			{
+				var result = client.getAuditLogActions().LogUsingPOST(
+					new ActorData().setActorDisplayName(actorName).setActorRoles(actorRoles)
+						.setActorId(actorId),
+					new ActionData().setDetails(details).setAction(act)
+						.setEntryType(entryType), 
+					applicationId
+				);
+
+				Console.WriteLine(result.LogEntryId);
+			}
+			catch (ApiException e)
+			{
+				Console.WriteLine("Exception when calling AuditLogControllerApi#logAuthAction");
+			}
 			
 	.. tab-container:: php
 		:title: PHP
@@ -148,7 +170,7 @@ Inserting batch entries
 			    // handle exception
 			}
 			
-	.. tab-container:: C#
+	.. tab-container:: C
 		:title: C#
 		
 		The C# example uses the `logsentinel-dotnet-core-client <https://github.com/LogSentinel/logsentinel-dotnet-core-client/>`_ 
@@ -156,7 +178,32 @@ Inserting batch entries
 		.. code-block:: C#
 		
 			
-			Console.WriteLine(result.LogEntryId);
+			LogSentinelClientBuilder builder = LogSentinelClientBuilder
+				.create(applicationId, organizationId, secret);
+
+			builder.setEncryptionKey(encryptionKey); // Optional
+
+			LogSentinelClient client = builder.build();    
+
+			try
+			{
+				List<BatchLogRequestEntry> batch = new List<BatchLogRequestEntry>();
+				for (int i = 0; i < COUNT; i++) {
+				    string details = "detais" + i;
+
+				    BatchLogRequestEntry entry = new BatchLogRequestEntry(
+				    	new ActorData().setActorDisplayName(actorName).setActorRoles(actorRoles).setActorId(actorId),
+					new ActionData().setDetails(details).setAction(act).setEntryType(entryType));
+				
+			    		batch.Add(entry);
+				}
+				var result = client.getAuditLogActions().LogBatchUsingPOST1(batch, applicationId);
+				Console.WriteLine(result.LogEntryId);
+			}
+			catch (ApiException e)
+			{
+				Console.WriteLine("Exception when calling AuditLogControllerApi#logAuthAction");
+			}
 			
 			
 	.. tab-container:: php
