@@ -350,7 +350,7 @@ Inserting batch entries
 			req.write(data);
 			req.end();
 			
-Consistency proof
-***********************
+Merkle proofs
+*************
 
- See example here `logsentinel-java-client-verification-ui <https://github.com/LogSentinel/logsentinel-java-client-verification-ui/>`_ 
+For consistency and inclusion proofs, see our example verification application: `logsentinel-java-client-verification-ui <https://github.com/LogSentinel/logsentinel-java-client-verification-ui/>`_ 
