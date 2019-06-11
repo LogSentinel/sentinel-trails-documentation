@@ -27,8 +27,7 @@ Inserting a single entry
 			    );
 			    System.out.println(result);
 			} catch (ApiException e) {
-			    System.err.println("Exception when calling AuditLogControllerApi#logAuthAction");
-			    e.printStackTrace();
+			    // handle exception
 			}
 			
 	.. tab-container:: c
@@ -351,4 +350,7 @@ Inserting batch entries
 			req.write(data);
 			req.end();
 			
-			
+Consistency proof
+***********************
+
+ See example here `logsentinel-java-client-verification-ui <https://github.com/LogSentinel/logsentinel-java-client-verification-ui/>`_ 
