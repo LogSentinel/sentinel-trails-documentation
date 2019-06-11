@@ -36,7 +36,7 @@ Inserting a single entry
 		
 		The C# example uses the `logsentinel-dotnet-core-client <https://github.com/LogSentinel/logsentinel-dotnet-core-client/>`_ 
 		
-		.. code-block:: c#
+		.. code-block:: java
 		
 			Console.WriteLine(result.LogEntryId);
 			
