@@ -31,7 +31,7 @@ Inserting a single entry
 			    e.printStackTrace();
 			}
 			
-	.. tab-container:: C#
+	.. tab-container:: java
 		:title: C#
 		
 		The C# example uses the `logsentinel-dotnet-core-client <https://github.com/LogSentinel/logsentinel-dotnet-core-client/>`_ 
