@@ -1,7 +1,7 @@
 Code examples
 =============
 
-Below are some code example for basic SentinelDB functionality:
+Below are some code example for basic SentinelTrails functionality:
 
 Inserting a single entry
 ***********************
