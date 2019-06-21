@@ -22,6 +22,7 @@ All communication between the agent and the Sentinel Trails service is **encrypt
 
 Configuration and installation is done through scripts provided by us and you :doc:`can follow the steps here </agent/configuring-agent>`:
 
+In order to find existing logs and tables to monitor and send to SentinelTrails, you can use our free and open source `scan-logs script <https://github.com/LogSentinel/scan-logs>`_
 
 Below is an overview of how the agent fits into the architecture:
 
