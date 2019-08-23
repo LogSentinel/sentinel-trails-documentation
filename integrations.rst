@@ -21,7 +21,7 @@ Integration with Fluentd
  
  <match logsentinel.**>
    @type http
-   endpoint_url     https://app.logsentinel.com/api/log/<actorId>/<action>/<entityType>/<entityId>?param1=<param1>
+   endpoint_url     https://api.logsentinel.com/api/log/<actorId>/<action>/<entityType>/<entityId>?param1=<param1>
    serializer    json
    custom_headers {"Application-Id": "b1fgt7a0-5rc5-11e8-8230-0db3d3bfb10d"}
    username <organizationId>
