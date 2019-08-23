@@ -4,7 +4,7 @@ Integration with Fluentd
 ************************
 `Fluentd quickstart <https://docs.fluentd.org/v1.0/articles/quickstart>`_
 
-* install third party plugin `http_ext <https://github.com/toshitanian/fluent-plugin-out-http-ext>`_ (requires basic knowledge of ruby gems). `Info for fluentd custom plugins <https://docs.fluentd.org/v1.0/articles/plugin-development#installing-custom-plugins>`_ example configuration for the plugin to communicate with logsentinel
+* install third party plugin `http <https://github.com/fluent-plugins-nursery/fluent-plugin-out-http>`_ (requires basic knowledge of ruby gems). `Info for fluentd custom plugins <https://docs.fluentd.org/v1.0/articles/plugin-development#installing-custom-plugins>`_ example configuration for the plugin to communicate with logsentinel
 
 .. code:: text
 
@@ -20,23 +20,22 @@ Integration with Fluentd
  </source>
  
  <match logsentinel.**>
-   @type http_ext
+   @type http
    endpoint_url     https://app.logsentinel.com/api/log/<actorId>/<action>/<entityType>/<entityId>?param1=<param1>
-   serialize    json
+   serializeр    json
    use_ssl    true
    verify_ssl    true
-   <headers>
-     Application-Id b1fgt7a0-5rc5-11e8-8230-0db3d3bfb10d
-     Authorization     BasicYjFmNjQ2YTAtNWNjNS0xMWU4LTgyMzAtMGRiM2QzYmZiNTBkPmM0YjA4LWViMDg1MmJmNmI0ZGJhNjMwMTJmN2Y2Y2RjMjk3ZWY3ODg4NmRiM2E5YjViODhiNGUxZGZlMzZhOGM=
-   </headers>
+   custom_headers {"Application-Id": "b1fgt7a0-5rc5-11e8-8230-0db3d3bfb10d"}
+   username <organizationId>
+   password <secret>
  </match>
  
 
 * ``<source>`` configuration is only for testing purposes. It shows how to use regex to format data properly  It gets lines from log file with path <path> every <refresh_interval> seconds and parses it with <expression> regex, so data can be extracted easy. This specific regex transforms: ``"actor1 action2 entityType3 entityId4 urlParam"``  ->  ``{"actorId":"actor1","action":"action2","entityType":"entityType3","entityId":"entityId4","param1":"urlParam"}``
-* ``<match>`` config is with type http_ext which is the plugin that is already installed.
+* ``<match>`` config is with type http which is the plugin that is already installed.
 * ``endpoint_url`` is Logsentinel API url. Path variables and url params can be extracted from input (properly parsed). Params in <> are replaced with their values. Nested params also can be used ( example: ``<data.id>`` extracts ``444`` from ``{"data" :{"id":444}}`` )
-* ``<headers>`` contains mandatory headers for authentication and authorization. Values of Application-Id and Authorization are just an example. Your organization real values must be provided. Authorization header consists of "Basic" string + base64_encode(<your organization id>:<your secret>)
-Additional configuration params are available - see  `http_ext plugin configuration options <https://github.com/toshitanian/fluent-plugin-out-http-ext#configuration-options>`_ 
+* ``custom_headers``, ``usernamd`` and ``password`` contain mandatory headers for authentication and authorization. Values of Application-Id, usernamd and password should be obtained from the API credentials page on your dashboard
+Additional configuration params are available - see  `http plugin configuration options <https://github.com/fluent-plugins-nursery/fluent-plugin-out-http>`_ 
 
 
 
