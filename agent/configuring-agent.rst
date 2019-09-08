@@ -44,6 +44,8 @@ Installing on Windows
 3. Customize the ``logsentinel-agent.yaml`` file in the installation directory
 4. Go to Services and start the LogSentinelAgent service
 
+Note: if you are going to collect Windows event logs from other machines, you need a series of permissions configurations `described in detail here <https://techblog.bozho.net/remote-log-collection-on-windows/>`_
+
 Configuring the agent
 ---------------------
 Configuring the agent is done via a straightforward YAML file. All properties are `described in the documentation <https://github.com/LogSentinel/logsentinel-agent/blob/master/configuration.md>`_ . Below is a sample setup that listens to a Windows log as well as a MS SQL Audit trail:
