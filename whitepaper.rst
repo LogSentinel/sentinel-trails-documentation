@@ -60,9 +60,9 @@ The integrity of the log is guaranteed even if a malicious actor gains access to
 * Print it on paper – it can be published in newspapers (which is less practical), or printed on a blank paper and stored in physically protected cases, or snail-mailed to multiple stakeholders, including auditors.
 * Store it on a write-only medium. Be it a CD-R, or more generally – any
 *  `WORM storage <https://en.wikipedia.org/wiki/Write_once_read_many>`_ 
-* . LogSentienl returns the latest known hashes which you can decide when and how to store.
+* LogSentienl returns the latest known hashes which you can decide when and how to store.
 * Email it to multiple stakeholders – while email can be manipulated as well, having it distributed to multiple people, potentially with different email servers, increases the complexity of changing the hash in all places.
-* Store it on the Ethereum blockchain (alpha). Blockchains are the perfect candidate, as they are immutable – once an entry is stored there, it cannot be removed. Transaction fees are relatively cheap, so LogSentinel can regularly push the last known hashes to the Ethereum blockchain
+* Store it on the Ethereum blockchain. Public blockchains are the perfect candidate, as they are immutable – once an entry is stored there, it cannot be removed. Transaction fees are relatively cheap, so LogSentinel can regularly push the last known hashes to the Ethereum blockchain
 
 Conclusion
 **********
