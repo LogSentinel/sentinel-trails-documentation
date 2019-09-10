@@ -56,12 +56,11 @@ In addition to forming a hash chain, entries form groups, which are timestamped 
 The integrity of the log is guaranteed even if a malicious actor gains access to the log database. So you don’t have to trust the LogSentiel cloud service, or even your own employees who manage the hosted solution. In order to achieve that, there is one “catch” – the latest hash in the hash chain at a given moment has to be kept in an unmodifiable way. When you have a given hash, the fact that it is present in the audit log guarantees that it hasn’t been tampered with. And vice-versa – if a hash that was previously stored is missing from the audit log, it means the log has been tampered with. There are multiple ways to store these latest hashes in an unmodifiable way, and LogSentinel supports:
 
 
-
+* Store it on the Ethereum blockchain. Public blockchains are the perfect candidate, as they are immutable – once an entry is stored there, it cannot be removed. Transaction fees are relatively cheap, so LogSentinel can regularly push the last known hashes to the Ethereum blockchain
 * Print it on paper – it can be published in newspapers (which is less practical), or printed on a blank paper and stored in physically protected cases, or snail-mailed to multiple stakeholders, including auditors.
 * Store it on a write-only medium. Be it a CD-R, or more generally – any `WORM storage <https://en.wikipedia.org/wiki/Write_once_read_many>`_ 
 * LogSentienl returns the latest known hashes which you can decide when and how to store.
 * Email it to multiple stakeholders – while email can be manipulated as well, having it distributed to multiple people, potentially with different email servers, increases the complexity of changing the hash in all places.
-* Store it on the Ethereum blockchain. Public blockchains are the perfect candidate, as they are immutable – once an entry is stored there, it cannot be removed. Transaction fees are relatively cheap, so LogSentinel can regularly push the last known hashes to the Ethereum blockchain
 
 Conclusion
 **********
