@@ -21,7 +21,7 @@ Inserting a single entry
 			LogSentinelClient client = builder.build();
 
 			try {
-			    LogResponse result = client.getAuditLogActions().log(
+			    var result = client.getAuditLogActions().log(
 				new ActorData(actorId).setActorDisplayName(username).setActorRoles(roles), 
 				new ActionData(details).setAction(action)
 			    );
@@ -35,7 +35,7 @@ Inserting a single entry
 		
 		The C# example uses the `logsentinel-dotnet-core-client <https://github.com/LogSentinel/logsentinel-dotnet-core-client/>`_ 
 		
-		.. code-block:: java
+		.. code-block:: C#
 		
 			LogSentinelClientBuilder builder = LogSentinelClientBuilder
 				.create(applicationId, organizationId, secret);
@@ -94,20 +94,19 @@ Inserting a single entry
 		.. code-block:: python
 			
 			import requests
-			url = 'https://app.logsentinel.com/api/log/' + actorId + '/' + action + '/' + entityType + '/' + entityId);
+			url = 'https://app.logsentinel.com/api/log/' + actorId + '/' + action + '/' + entityType + '/' + entityId;
 			data = '''{
 			  "detail1": "detail 1",
 			  "detail2": "detail 2"
 			}'''
 			
 			response = requests.post(url, auth=HTTPBasicAuth(orgId, secret), data=data, headers={"Content-Type": "application/json"})
-		
-	.. tab-container:: nodejs
+    .. tab-container:: nodejs
 		:title: Node.js
 
 		.. code-block:: javascript
 		
-			var https = require('https');
+			var https = require('https://');
 			var data = JSON.stringify({
 			  "detail1": "detail 1",
 			  "detail2": "detail 2"
@@ -121,7 +120,7 @@ Inserting a single entry
 			  method: 'POST',
 			  headers: {
 				'Content-Type': 'application/json; charset=utf-8',
-				'Content-Length': data.length
+				'Application-Id': application.id,
 				'Authorization': auth;
 			  }
 			};
@@ -153,7 +152,7 @@ Inserting batch entries
 			
 			List<BatchLogRequestEntry> batch = new ArrayList<>();
 			for (int i = 0; i < COUNT; i++) {
-			    String details = "detais" + i;
+			    String details = "details" + i;
 
 			    BatchLogRequestEntry entry = new BatchLogRequestEntry();
 			    entry.setActionData(new ActionData(details).setAction(action).setBinaryContent(false) );
@@ -188,7 +187,7 @@ Inserting batch entries
 			{
 				List<BatchLogRequestEntry> batch = new List<BatchLogRequestEntry>();
 				for (int i = 0; i < COUNT; i++) {
-				    string details = "detais" + i;
+				    string details = "details" + i;
 
 				    BatchLogRequestEntry entry = new BatchLogRequestEntry(
 				    	new ActorData().setActorDisplayName(actorName).setActorRoles(actorRoles).setActorId(actorId),
@@ -262,7 +261,7 @@ Inserting batch entries
 		.. code-block:: python
 			
 			import requests
-			url = 'https://app.logsentinel.com/api/log/batch');
+			url = 'https://app.logsentinel.com/api/log/batch';
 			data = '''[{
 			  "actorData": {
 			    "actorId":"actor1",
@@ -329,7 +328,7 @@ Inserting batch entries
 				  "detail2": "detail 2"
 			    }]);
 
-			var auth = 'Basic ' + Buffer.from(ORG_ID + ':' + ORG_SECRET).toString('base64')
+			var auth = 'Basic ' + (Buffer.from(ORG_ID + ':' + ORG_SECRET).toString('base64'))
 
 			var options = {
 			  host: 'app.logsentinel.com',
@@ -337,7 +336,7 @@ Inserting batch entries
 			  method: 'POST',
 			  headers: {
 				'Content-Type': 'application/json; charset=utf-8',
-				'Content-Length': data.length
+				'Application-Id': application.id,
 				'Authorization': auth;
 			  }
 			};
