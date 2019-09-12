@@ -100,6 +100,7 @@ Inserting a single entry
 			}'''
 			
 			response = requests.post(url, auth = HTTPBasicAuth(orgId, secret), data = data, headers = {"Content-Type": "application/json", "Application-Id": "applicationId"})
+
     .. tab-container:: nodejs
 		:title: Node.js
 
@@ -154,7 +155,7 @@ Inserting batch entries
 			    String details = "details" + i;
 
 			    BatchLogRequestEntry entry = new BatchLogRequestEntry();
-			    entry.setActionData(new ActionData(details).setAction(action).setBinaryContent(false) );
+			    entry.setActionData(new ActionData(details).setAction(action).setBinaryContent(false));
 			    entry.setActorData(new ActorData(actorId).setActorDisplayName(username).setActorRoles(roles).setDepartment("IT"));
 			    entry.setAdditionalParams(new HashMap<>());
 
@@ -189,10 +190,10 @@ Inserting batch entries
 				    string details = "details" + i;
 
 				    BatchLogRequestEntry entry = new BatchLogRequestEntry(
-				    	new ActorData().setActorDisplayName(actorName).setActorRoles(actorRoles).setActorId(actorId),
+                    new ActorData().setActorDisplayName(actorName).setActorRoles(actorRoles).setActorId(actorId),
 					new ActionData().setDetails(details).setAction(act).setEntryType(entryType));
 				
-			    		batch.Add(entry);
+                    batch.Add(entry);
 				}
 				var result = client.getAuditLogActions().LogBatchUsingPOST(batch, applicationId);
 				Console.WriteLine(result.LogEntryId);
