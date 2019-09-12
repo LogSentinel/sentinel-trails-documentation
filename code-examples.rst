@@ -80,7 +80,7 @@ Inserting a single entry
 			curl_setopt($curl, CURLOPT_URL, 'https://app.logsentinel.com/api/log/' . actorId . '/' . action . '/' . entityType . '/' . entityId);
 			curl_setopt($curl, CURLOPT_HTTPHEADER, array(
 				'Content-Type: application/json',
-                            'Application-Id: applicationId'
+                                'Application-Id: applicationId'
 			));
 			curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 			curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
@@ -246,17 +246,17 @@ Inserting batch entries
 			curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
 			
 			curl_setopt($curl, CURLOPT_URL, 'https://app.logsentinel.com/api/log/batch');
-			curl_setopt($curl, CURLOPT_HTTPHEADER, array[
+			curl_setopt($curl, CURLOPT_HTTPHEADER, array(
 				'Content-Type: application/json',
-                'Application-Id:    applicationId'
-			]);
+                            'Application-Id:    applicationId'
+			));
 
 			curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 			curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
 			curl_setopt($curl, CURLOPT_USERPWD, $ORG_ID . ":" . $SECRET);
 			
 			// EXECUTE:
-			$result = curl_exec($curl);	
+			$result = curl_exec($curl);
 			
 	.. tab-container:: python
 		:title: Python
