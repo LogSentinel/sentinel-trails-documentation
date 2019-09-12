@@ -10,7 +10,7 @@ We perform regular verification of the log, going from the newest to the oldest 
 
 There's also the partial verification which is run every 15-30 minutes and it verifies only the latest inserted logs. 
 
-In case of failure in any of these automated verificaion processes, a configured list of recipients is notified via email or :doc:`via Telegram </telegram>`.
+In case of failure in any of these automated verification processes, a configured list of recipients is notified via email or :doc:`via Telegram </telegram>`.
 
 Merkle tree proofs
 ******************
@@ -19,7 +19,7 @@ Merkle trees are at the core of many blockchain implementations. We support mult
 
 * A `consistency proof <https://api.logsentinel.com/api#!/Verification/getConsistencyProof>`_ guarantees that the chain has not been tampered with between two publicly known root hashes. Normally you obtain the two roots (e.g. from those pushed to Ethereum or a third party service), you get the consistency proof and validate it.
 
-* An `inclusion proof <https://api.logsentinel.com/api#!/Verification/getInclusionProof>`_ guarantees that a particular entry is in the chain. You pass the expected standalone hash of the entry (as per the `Hashable contenet endpoints result <https://api.logsentinel.com/api#/Hash>`_) and then verify whether the proof is valid. 
+* An `inclusion proof <https://api.logsentinel.com/api#!/Verification/getInclusionProof>`_ guarantees that a particular entry is in the chain. You pass the expected standalone hash of the entry (as per the `Hashable content endpoints result <https://api.logsentinel.com/api#/Hash>`_) and then verify whether the proof is valid.
 
 You can also `read our paper on our use of Merkle trees <https://github.com/LogSentinel/merkle-trees-documentation/releases/download/v0.1/MerkleTrees.pdf>`_.
 

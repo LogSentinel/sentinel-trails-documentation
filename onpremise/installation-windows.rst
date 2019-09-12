@@ -54,8 +54,8 @@ Extract the logsentinel-installer.zip archive in c:\logsentinel and run install.
 
 .. image:: logsentinel-service.png
 
-Edit application.properites by setting:
-* ``root.url`` – http://{the domain name to be used for the servce}. It can set to http://localhost:8080 initially and changed later
+Edit application.properties by setting:
+* ``root.url`` – http://{the domain name to be used for the service}. It can set to http://localhost:8080 initially and changed later
 * ``admin.password`` – password for the admin user
 * ``spring.mail.*`` properties to configure outgoing email settings (can be set at a later stage)
 
