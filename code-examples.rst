@@ -51,9 +51,7 @@ Inserting a single entry
 						.setActorId(actorId),
 					new ActionData().setDetails(details).setAction(act)
 						.setEntryType(entryType), 
-					applicationId
-				);
-
+					applicationId);
 				Console.WriteLine(result.LogEntryId);
 			}
 			catch (ApiException e)
@@ -101,7 +99,7 @@ Inserting a single entry
 			  "detail2": "detail 2"
 			}'''
 			
-			response = requests.post(url, auth=HTTPBasicAuth(orgId, secret), data=data, headers={"Content-Type": "application/json", "Application-Id": "applicationId"})
+			response = requests.post(url, auth = HTTPBasicAuth(orgId, secret), data = data, headers = {"Content-Type": "application/json", "Application-Id": "applicationId"})
     .. tab-container:: nodejs
 		:title: Node.js
 
@@ -120,7 +118,7 @@ Inserting a single entry
 			  path: '/api/log/' + actorId + '/' + action + '/' + entityType + '/' + entityId,
 			  method: 'POST',
 			  headers: {
-				'Content-Type': 'application/json; charset=utf-8',
+				'Content-Type': 'application/json; charset = utf-8',
 				'Application-Id': applicationId,
 				'Authorization': auth;
 			  }
@@ -196,7 +194,7 @@ Inserting batch entries
 				
 			    		batch.Add(entry);
 				}
-				var result = client.getAuditLogActions().LogBatchUsingPOST1(batch, applicationId);
+				var result = client.getAuditLogActions().LogBatchUsingPOST(batch, applicationId);
 				Console.WriteLine(result.LogEntryId);
 			}
 			catch (ApiException e)
@@ -248,7 +246,7 @@ Inserting batch entries
 			curl_setopt($curl, CURLOPT_URL, 'https://app.logsentinel.com/api/log/batch');
 			curl_setopt($curl, CURLOPT_HTTPHEADER, array(
 				'Content-Type: application/json',
-                            'Application-Id:    applicationId'
+                                    'Application-Id: applicationId'
 			));
 
 			curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
@@ -294,7 +292,7 @@ Inserting batch entries
 				  "detail2": "detail 2"
 			    }]'''
 			
-			response = requests.post(url, auth=HTTPBasicAuth(orgId, secret), data=data, headers={"Content-Type": "application/json", "Application-Id": "applicationId"})
+			response = requests.post(url, auth = HTTPBasicAuth(orgId, secret), data = data, headers = {"Content-Type": "application/json", "Application-Id": "applicationId"})
 			
 	.. tab-container:: nodejs
 		:title: Node.js
@@ -338,7 +336,7 @@ Inserting batch entries
 			  path: '/api/log/batch',
 			  method: 'POST',
 			  headers: {
-				'Content-Type': 'application/json; charset=utf-8',
+				'Content-Type': 'application/json; charset = utf-8',
 				'Application-Id': applicationId,
 				'Authorization': auth;
 			  }
