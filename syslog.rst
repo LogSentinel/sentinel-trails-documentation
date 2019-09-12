@@ -7,8 +7,8 @@ In order to integrate with syslog, there are several options.
 
 Below is a list of endpoints and ports for each supported variant. We recommend TCP over TLS for most installations. However, some setups lack the needed flexibility, so fallback to plaintext TCP or UDP may be needed. In such cases there's an option for a VPN tunnel (for enterprise customers), or a more complicated internal setup with a intermediate syslog forwarder.
 
-* syslog.logsentinel.com:1514 - plaintext TCP
-* syslog.logsentinel.com:1515 - TCP over TLS
+* syslog.logsentinel.com:514 - plaintext TCP
+* syslog.logsentinel.com:515 - TCP over TLS
 * syslogudp.logsentinel.com:1516 - plaintext UDP
 
 We have a syslog configuration script which you can download and run `configure-syslog.sh <https://d381qa7mgybj77.cloudfront.net/wp-content/uploads/2018/12/configure-syslog.sh>`_. It configures a syslog template that allows authenticating against LogSentinel Trails. The important line for authentication is this:

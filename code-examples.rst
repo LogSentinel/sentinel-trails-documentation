@@ -77,9 +77,10 @@ Inserting a single entry
 			curl_setopt($curl, CURLOPT_POST, 1);
 			curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
 			
-			curl_setopt($curl, CURLOPT_URL, 'https://app.logsentinel.com/api/log/' + actorId + '/' + action + '/' + entityType + '/' + entityId);
+			curl_setopt($curl, CURLOPT_URL, 'https://app.logsentinel.com/api/log/' . actorId . '/' . action . '/' . entityType . '/' . entityId);
 			curl_setopt($curl, CURLOPT_HTTPHEADER, array(
-				'Content-Type: application/json'
+				'Content-Type: application/json',
+                'Application-Id: applicationId'
 			));
 			curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 			curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
@@ -100,13 +101,13 @@ Inserting a single entry
 			  "detail2": "detail 2"
 			}'''
 			
-			response = requests.post(url, auth=HTTPBasicAuth(orgId, secret), data=data, headers={"Content-Type": "application/json"})
+			response = requests.post(url, auth=HTTPBasicAuth(orgId, secret), data=data, headers={"Content-Type": "application/json", "Application-Id": "applicationId"})
     .. tab-container:: nodejs
 		:title: Node.js
 
 		.. code-block:: javascript
 		
-			var https = require('https://');
+			var https = require('https');
 			var data = JSON.stringify({
 			  "detail1": "detail 1",
 			  "detail2": "detail 2"
@@ -120,7 +121,7 @@ Inserting a single entry
 			  method: 'POST',
 			  headers: {
 				'Content-Type': 'application/json; charset=utf-8',
-				'Application-Id': application.id,
+				'Application-Id': applicationId,
 				'Authorization': auth;
 			  }
 			};
@@ -246,8 +247,10 @@ Inserting batch entries
 			
 			curl_setopt($curl, CURLOPT_URL, 'https://app.logsentinel.com/api/log/batch');
 			curl_setopt($curl, CURLOPT_HTTPHEADER, array(
-				'Content-Type: application/json'
+				'Content-Type: application/json',
+                'Application-Id: applicationId'
 			));
+
 			curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 			curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
 			curl_setopt($curl, CURLOPT_USERPWD, $ORG_ID . ":" . $SECRET);
@@ -291,7 +294,7 @@ Inserting batch entries
 				  "detail2": "detail 2"
 			    }]'''
 			
-			response = requests.post(url, auth=HTTPBasicAuth(orgId, secret), data=data, headers={"Content-Type": "application/json"})
+			response = requests.post(url, auth=HTTPBasicAuth(orgId, secret), data=data, headers={"Content-Type": "application/json", "Application-Id": "applicationId"})
 			
 	.. tab-container:: nodejs
 		:title: Node.js
@@ -336,7 +339,7 @@ Inserting batch entries
 			  method: 'POST',
 			  headers: {
 				'Content-Type': 'application/json; charset=utf-8',
-				'Application-Id': application.id,
+				'Application-Id': applicationId,
 				'Authorization': auth;
 			  }
 			};
