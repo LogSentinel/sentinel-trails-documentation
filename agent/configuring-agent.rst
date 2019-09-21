@@ -66,15 +66,15 @@ Configuring the agent is done via a straightforward YAML file. All properties ar
 	timestampInitialUseCurrent: true
 
 	windowsEventLogAgent:
-      - sendLogsRate: 30000
-        sourceTypes: 
-          - Application
-          - Security
+		- sendLogsRate: 30000
+		  sourceTypes: 
+			- Application
+			- Security
 	   
-    mssqlAuditLogAgent:
-      - dbcConnectionString: jdbc:sqlserver://localhost:1434;integratedSecurity=true
-        sendLogsRate: 30000
-        mssqlLogsPath: c:\logs\mssqltrail\
+	mssqlAuditLogAgent:
+		- dbcConnectionString: jdbc:sqlserver://localhost:1434;integratedSecurity=true
+		  sendLogsRate: 30000
+		  mssqlLogsPath: c:\logs\mssqltrail\
 	
 
 Conclusion
