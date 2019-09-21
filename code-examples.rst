@@ -1,4 +1,4 @@
-Code examples
+Code Examples
 =============
 
 Below are some code example for basic SentinelTrails functionality:

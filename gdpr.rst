@@ -1,4 +1,4 @@
-GDPR functionality
+GDPR Functionality
 ==================
 
 The General Data Protection Regulation requires systems to be upgraded to follow certain rules. Some of the requirements can’t be handled by a drop-in solution, but some can. That’s why LogSentinel supports a number of features – a GDPR register and GDPR-specific logging endpoints.

@@ -46,7 +46,7 @@ Welcome to the LogSentinel SentinelTrails Documentation!
    onpremise/ha-load-balancing
 
    
-   .. _onpremise:
+.. _user-manual:
 
 .. toctree::
    :maxdepth: 2
@@ -55,6 +55,7 @@ Welcome to the LogSentinel SentinelTrails Documentation!
    user-manual/dashboard
    user-manual/applications
    user-manual/user-management
+   user-manual/organization
    user-manual/alerts
    user-manual/telegram
    
