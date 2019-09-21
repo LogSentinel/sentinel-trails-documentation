@@ -59,11 +59,6 @@ Configuring the agent is done via a straightforward YAML file. All properties ar
 	# BUSINESS_LOGIC_ENTRY, DATABASE_QUERY, SYSTEM_EVENT
 	entryType: BUSINESS_LOGIC_ENTRY
 
-	# FILE, RELATIONAL_DATABASE, DATABASE_LOG, DIRECTORY, ACCESS_LOG, MSSQL_AUDIT_LOG, LINUX_AUDIT_LOG, AXON_DB, WINDOWS_EVENT_LOG
-	targetTypes:
-	  - MSSQL_AUDIT_LOG
-	  - WINDOWS_EVENT_LOG
-
 	logsentinelBaseUrl: https://api.logsentinel.com
 
 	includeMacAddress: false
@@ -71,13 +66,13 @@ Configuring the agent is done via a straightforward YAML file. All properties ar
 	timestampInitialUseCurrent: true
 
 	windowsEventLogAgent:
-		sendLogsRate: 30000
+	  - sendLogsRate: 30000
 		sourceTypes: 
 			- Application
 			- Security
 	   
 	mssqlAuditLogAgent:
-		jdbcConnectionString: jdbc:sqlserver://localhost:1434;integratedSecurity=true
+	  - dbcConnectionString: jdbc:sqlserver://localhost:1434;integratedSecurity=true
 		sendLogsRate: 30000
 		mssqlLogsPath: c:\logs\mssqltrail\
 	
