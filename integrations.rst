@@ -32,7 +32,7 @@ Integration with Fluentd
 * ``<source>`` configuration is only for testing purposes. It shows how to use regex to format data properly  It gets lines from log file with path <path> every <refresh_interval> seconds and parses it with <expression> regex, so data can be extracted easy. This specific regex transforms: ``"actor1 action2 entityType3 entityId4 urlParam"``  ->  ``{"actorId":"actor1","action":"action2","entityType":"entityType3","entityId":"entityId4","param1":"urlParam"}``
 * ``<match>`` config is with type http which is the plugin that is already installed.
 * ``endpoint_url`` is Logsentinel API url. Path variables and url params can be extracted from input (properly parsed). Params in <> are replaced with their values. Nested params also can be used ( example: ``<data.id>`` extracts ``444`` from ``{"data" :{"id":444}}`` )
-* ``custom_headers``, ``usernamd`` and ``password`` contain mandatory headers for authentication and authorization. Values of Application-Id, usernamd and password should be obtained from the API credentials page on your dashboard
+* ``custom_headers``, ``username`` and ``password`` contain mandatory headers for authentication and authorization. Values of Application-Id, username and password should be obtained from the API credentials page on your dashboard
 Additional configuration params are available - see  `http plugin configuration options <https://github.com/fluent-plugins-nursery/fluent-plugin-out-http>`_ 
 
 
@@ -110,7 +110,7 @@ nxlog.conf
 
 URL is Logsentinel API url (api.logsentinel.com)
 
-\Authorization and Application-Id headers contain mandatory headers for authentication and authorization. Values of Application-Id and Authorization are just an example. Your organization real values must be provided. Authorization header consists of “Basic” string + base64_encode(<your organization id>:<your secret>)
+Authorization and Application-Id headers contain mandatory headers for authentication and authorization. Values of Application-Id and Authorization are just an example. Your organization real values must be provided. Authorization header consists of “Basic” string + base64_encode(<your organization id>:<your secret>)
 
 Extracting data from logs here is just simple regex that reads 4 words from log file and fills the mandatory url params (actorId, action , entityType, entityId). You can use all Nxlog functionality to parse and transform your logs as you wish.
 
