@@ -19,7 +19,6 @@ Welcome to the LogSentinel SentinelTrails Documentation!
    gdpr
    comparing-db
    advanced-faq
-   telegram
 
 .. _agent:
 
@@ -45,3 +44,17 @@ Welcome to the LogSentinel SentinelTrails Documentation!
    onpremise/ldap
    onpremise/security
    onpremise/ha-load-balancing
+
+   
+   .. _onpremise:
+
+.. toctree::
+   :maxdepth: 2
+   :caption: User Manual
+   
+   user-manual/dashboard
+   user-manual/applications
+   user-manual/user-management
+   user-manual/alerts
+   user-manual/telegram
+   
