@@ -48,7 +48,7 @@ Reports
 
 Above the main timeline chart are reporting buttons. A high-level report for the currently selected period can be exported in either PDF or XLSX formats. Reports contain an overview of the log activity over the selected period of time. 
 
-Additionally, reports are generated periodically and sent via email. The reporting periods are defined from the "organization" page and can be "daily", "weekly", "monthly" and "yearly".
+Additionally, reports are generated periodically and sent via email. The reporting periods are defined from the "Charts" page and can be "daily", "weekly", "monthly" and "yearly". Multiple report recipients can also be configured.
 
 Exports
 -------
