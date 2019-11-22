@@ -3,7 +3,7 @@ LogSentinel Agent Overview
 The `Sentinel Trails listening agent is an open source component <https://github.com/LogSentinel/logsentinel-agent>`_ that gets installed on target machines to listen to a configured set of log sources. It can be installed on Linux and Windows and supports the following types of sources:
 
 
-*  **Log files**  an arbitrary text file can be collected and sent, line by line, to the Sentinel Trails service. These typically application logs and logs by any other non-standard software
+*  **Log files**  an arbitrary text file can be collected and sent, line by line, to the Sentinel Trails service. These typically application logs and logs by systems like application servers, accounting software, CRMs, ERPs (e.g. SAP), big data processing (e.g. Hadoop), or any other non-standard software
 *  **Database logs files**  - if database query logs are enabled, the agent listens to newly issued queries and sends them to the Sentinel Trails service
 *  **Database tables**  - if you store audit trail inside relational database tables, you can configure queries that periodically fetch new entries and send them to the Sentinel Trails service
 *  **MS SQL audit trail**  – if MS SQL audit trail is enabled, the agent can be configured to listen to it and forward the events
