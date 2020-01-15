@@ -22,8 +22,8 @@ Inserting a single entry
 
 			try {
 			    var result = client.getAuditLogActions().log(
-				new ActorData(actorId).setActorDisplayName(username).setActorRoles(roles), 
-				new ActionData(details).setAction(action)
+				new ActorData().actorId(actorId).actorDisplayName(username).actorRoles(roles), 
+				new ActionData().details(details).action(action)
 			    );
 			    System.out.println(result);
 			} catch (ApiException e) {
@@ -156,7 +156,7 @@ Inserting batch entries
 
 			    BatchLogRequestEntry entry = new BatchLogRequestEntry();
 			    entry.setActionData(new ActionData(details).setAction(action).setBinaryContent(false));
-			    entry.setActorData(new ActorData(actorId).setActorDisplayName(username).setActorRoles(roles).setDepartment("IT"));
+			    entry.setActorData(new ActorData().actorId(actorId).actorDisplayName(username).actorRoles(roles));
 			    entry.setAdditionalParams(new HashMap<>());
 
 			    batch.add(entry);
