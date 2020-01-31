@@ -34,9 +34,8 @@ To make sure Cassandra is installed and running, run cqlsh.
 .. image:: cqlsh-windows.png
 
 Finally, create a keyspace:
-``
-CREATE KEYSPACE IF NOT EXISTS logsentinel WITH REPLICATION = { 'class': 'SimpleStrategy', 'replication_factor': 1 } AND DURABLE_WRITES =  true;
-``
+
+``CREATE KEYSPACE IF NOT EXISTS logsentinel WITH REPLICATION = { 'class': 'SimpleStrategy', 'replication_factor': 1 } AND DURABLE_WRITES =  true;``
 
 Installing ElasticSearch
 ************************
