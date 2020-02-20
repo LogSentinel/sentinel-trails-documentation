@@ -13,8 +13,8 @@ https://splunkbase.splunk.com/app/[LS_APP_ID]
     ![Search sources](./splunk/2-search.png)
 
 3. Use the Field Extractor to extract the following fields:
-    * `actorId` (required)
-    * `action` (required)
+    * `actorId` (optional)
+    * `action` (optional)
     * `actorDisplayName` (optional)
     * `entity` (optional)
     * `entityType` (optional)
@@ -39,4 +39,5 @@ https://splunkbase.splunk.com/app/[LS_APP_ID]
     ![Alert settings](./splunk/6-alert-settings.png)
 
     The `Application ID`, `Secret` and `Organization ID` can be found at this LogSentinel page:
+    https://app.logsentinel.com/api-credentials 
     ![Credentials](./splunk/7-credentials.png)
