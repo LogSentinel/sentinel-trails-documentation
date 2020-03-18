@@ -29,7 +29,7 @@ Installing on Linux
 
 
 1. Get the `latest release of logsentinel-agent.jar <https://github.com/LogSentinel/logsentinel-agent/releases/download/0.1/logsentinel-agent.jar>`_ and copy it to ``/var/logsentinel/logsentinel-agent.jar``
-2. Get the `logsentinel-agent.conf <https://github.com/LogSentinel/logsentinel-agent/blob/master/scripts/logsentinel-agent.conf>`_ file and copy it to ``/var/logsentinel/logsentinel-agent.conf
+2. Get the `logsentinel-agent.conf <https://github.com/LogSentinel/logsentinel-agent/blob/master/scripts/logsentinel-agent.conf>`_ file and copy it to ``/var/logsentinel/logsentinel-agent.conf``
 3. Add a ``logsentinel-agent.yaml`` in the same directory. The file should contain the configuration of the agent (see the next section)
 4. Get the `setup-agent.sh <https://github.com/LogSentinel/logsentinel-agent/blob/master/scripts/setup-agent.sh>`_ script and run it (works on CentOS/RHEL; we’ll soon add a similar script for Debian-based distros)
 
