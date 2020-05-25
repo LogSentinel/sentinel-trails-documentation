@@ -44,7 +44,7 @@ Setting up the database node
 			gpgcheck=1
 			repo_gpgcheck=1
 			gpgkey=https://www.apache.org/dist/cassandra/KEYS
-			EOT
+		EOT
 
 		sudo yum -y install cassandra
 
@@ -58,6 +58,7 @@ Setting up the search node
 
     Installing ElasticSearch (setup-elasticsearch.sh)
     
+
 	.. code:: text
 	
         BIND_IP=`ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p'`
@@ -93,6 +94,7 @@ Setting up the search node
 
         sudo service elasticsearch start
 
+
 		
 
 Setting up the load balancer node (optional)
@@ -106,6 +108,7 @@ Setting up a load balancer is optional. You can use a single application node or
     4. Run setup-loadbalancer.sh <domain> <contact-email>
 
     (setup-loadbalancer.sh)
+	
 	
 	.. code:: text
 	
@@ -205,16 +208,17 @@ Setting up the application node
 
     Setting up the logsentinel service(setup.sh)
     
+	
 	.. code:: text
 	
         # install Java 9
-            sudo yum -y update
-            sudo yum -y remove java
+		sudo yum -y update
+		sudo yum -y remove java
 
         # Change the open socket limits
-            sudo echo "*     soft   nofile  16384" >> /etc/security/limits.conf
-            sudo echo "*     hard   nofile  20000" >> /etc/security/limits.conf
-            sudo echo "net.ipv4.tcp_max_syn_backlog = 2048" >> /etc/sysctl.conf
+		sudo echo "*     soft   nofile  16384" >> /etc/security/limits.conf
+		sudo echo "*     hard   nofile  20000" >> /etc/security/limits.conf
+		sudo echo "net.ipv4.tcp_max_syn_backlog = 2048" >> /etc/sysctl.conf
 
         #sudo rpm -ivh /tmp/install/jdk-9_linux-x64_bin.rpm
         sudo yum install -y java-9-openjdk
@@ -233,7 +237,8 @@ Setting up the application node
 
 
 	(setup-nfs-client.sh)
-		
+	
+	
 	.. code:: text
 	
         SERVER_IP=$1
@@ -244,7 +249,9 @@ Setting up the application node
         ln -s /mnt/nfs/var/nfs /var/nfs
 
 		
+		
     (setup-nfs-server.sh)
+	
 	
 	.. code:: text
 	
