@@ -4,18 +4,21 @@ On-premise Installation on Linux
 Installing Java
 ***************
 
-    # install Java 9
-    sudo yum -y update
-    sudo yum -y remove java
+	.. code-block:: bash
+	
+		# install Java 9
+		sudo yum -y update
+		sudo yum -y remove java
 
-    # Change the open socket limits
-    sudo echo "*     soft   nofile  16384" >> /etc/security/limits.conf
-    sudo echo "*     hard   nofile  20000" >> /etc/security/limits.conf
-    sudo echo "net.ipv4.tcp_max_syn_backlog = 2048" >> /etc/sysctl.conf
+		# Change the open socket limits
+		sudo echo "*     soft   nofile  16384" >> /etc/security/limits.conf
+		sudo echo "*     hard   nofile  20000" >> /etc/security/limits.conf
+		sudo echo "net.ipv4.tcp_max_syn_backlog = 2048" >> /etc/sysctl.conf
 
-    #sudo rpm -ivh /tmp/install/jdk-9_linux-x64_bin.rpm
-    sudo yum install -y java-9-openjdk
+		#sudo rpm -ivh /tmp/install/jdk-9_linux-x64_bin.rpm
+		sudo yum install -y java-9-openjdk
 
+		
 
 Setting up the database node
 ****************************
