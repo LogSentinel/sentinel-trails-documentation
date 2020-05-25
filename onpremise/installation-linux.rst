@@ -4,7 +4,7 @@ On-premise Installation on Linux
 Installing Java
 ***************
 
-	.. code-block:: bash
+	.. code:: text
 	
 		# install Java 9
 		sudo yum -y update
@@ -35,7 +35,7 @@ Setting up the database node
 
     Installing Cassandra (setup-cassandra.sh):
     
-	.. code-block:: bash
+	.. code:: text
 	
 		sudo cat <<EOT >>  /etc/yum.repos.d/cassandra.repo
 			[cassandra]
@@ -58,7 +58,7 @@ Setting up the search node
 
     Installing ElasticSearch (setup-elasticsearch.sh)
     
-	.. code-block:: bash
+	.. code:: text
 	
         BIND_IP=`ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p'`
 
@@ -107,7 +107,7 @@ Setting up a load balancer is optional. You can use a single application node or
 
     (setup-loadbalancer.sh)
 	
-	.. code-block:: bash
+	.. code:: text
 	
         #!/bin/sh
 
@@ -205,7 +205,7 @@ Setting up the application node
 
     Setting up the logsentinel service(setup.sh)
     
-	.. code-block:: bash
+	.. code:: text
 	
         # install Java 9
             sudo yum -y update
@@ -234,7 +234,7 @@ Setting up the application node
 
 	(setup-nfs-client.sh)
 		
-	.. code-block:: bash
+	.. code:: text
 	
         SERVER_IP=$1
         sudo yum -y install nfs-utils
@@ -246,7 +246,7 @@ Setting up the application node
 		
     (setup-nfs-server.sh)
 	
-	.. code-block:: bash
+	.. code:: text
 	
         CLIENT_IP=$1
 

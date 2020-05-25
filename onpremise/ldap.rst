@@ -8,7 +8,7 @@ LDAP configuration
 
 In order to authenticate with LDAP server (not Windows AD) the following steps must be done:
 
-* in ``application.properties`` set ``ldap.auth.enabled=true` and ``ad.auth.enabled=false``
+* in ``application.properties`` set ``ldap.auth.enabled=true`` and ``ad.auth.enabled=false``
 * set ``ldap.url` to pint to your LDAP server
 * let's assume the following ldap tree:
 
