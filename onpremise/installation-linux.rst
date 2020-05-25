@@ -22,6 +22,7 @@ Installing Java
 
 Setting up the database node
 ****************************
+
     1. Obtain the following files (from a dedicated S3 bucket)
         a. cassandra-topology.properties
         b. root.crt and root.key (or generate them)
@@ -51,6 +52,7 @@ Setting up the database node
         
 Setting up the search node
 **************************
+
     1. Obtain the following files (from a dedicated S3 bucket)
         a. setup-elasticsearch.sh
     2. Place it in /tmp/install/
@@ -190,6 +192,7 @@ Setting up a load balancer is optional. You can use a single application node or
 
 Setting up the application node
 *******************************
+
     1. Obtain the following files (from a dedicated S3 bucket)
         a. logsentinel-x.x.x.jar – the application node binary
         b. sample app.properties – contains all configuration options
@@ -271,7 +274,8 @@ Setting up the application node
 
 
 Properties to be configured:
-***************************
+
+
     • spring.mail.* - configure an outgoing mail server
     • registration.email.from, generic.email.from – outgoing mails would be sent from these addresses
     • admin.username, admin.password – used to access the admin panel of the system (note: the username is <username>@logsentinel.com, i.e. if you configure admin.username=test, you’d be able to login with test@logsentinel.com)
