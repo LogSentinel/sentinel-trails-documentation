@@ -12,13 +12,13 @@ Installing Java
 
 		# Change the open socket limits
 		sudo echo "*     soft   nofile  16384" >> /etc/security/limits.conf
-		sudo echo "*     hard   nofile  20000" >> /etc/security/limits.conf
-		sudo echo "net.ipv4.tcp_max_syn_backlog = 2048" >> /etc/sysctl.conf
+        sudo echo "*     hard   nofile  20000" >> /etc/security/limits.conf
+        sudo echo "net.ipv4.tcp_max_syn_backlog = 2048" >> /etc/sysctl.conf
 
-		#sudo rpm -ivh /tmp/install/jdk-9_linux-x64_bin.rpm
-		sudo yum install -y java-9-openjdk
+        #sudo rpm -ivh /tmp/install/jdk-9_linux-x64_bin.rpm
+        sudo yum install -y java-9-openjdk
 
-		
+        
 
 Setting up the database node
 ****************************
@@ -35,20 +35,20 @@ Setting up the database node
 
     Installing Cassandra (setup-cassandra.sh):
     
-	.. code:: text
-	
-		sudo cat <<EOT >>  /etc/yum.repos.d/cassandra.repo
-			[cassandra]
-			name=Apache Cassandra
-			baseurl=https://www.apache.org/dist/cassandra/redhat/311x/
-			gpgcheck=1
-			repo_gpgcheck=1
-			gpgkey=https://www.apache.org/dist/cassandra/KEYS
-		EOT
+    .. code:: text
+    
+        sudo cat <<EOT >>  /etc/yum.repos.d/cassandra.repo
+            [cassandra]
+            name=Apache Cassandra
+            baseurl=https://www.apache.org/dist/cassandra/redhat/311x/
+            gpgcheck=1
+            repo_gpgcheck=1
+            gpgkey=https://www.apache.org/dist/cassandra/KEYS
+        EOT
 
-		sudo yum -y install cassandra
+        sudo yum -y install cassandra
 
-		
+        
 Setting up the search node
 **************************
     1. Obtain the following files (from a dedicated S3 bucket)
@@ -59,8 +59,8 @@ Setting up the search node
     Installing ElasticSearch (setup-elasticsearch.sh)
     
 
-	.. code:: text
-	
+    .. code:: text
+    
         BIND_IP=`ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p'`
 
         rpm --import https://artifacts.elastic.co/GPG-KEY-elasticsearch
@@ -95,7 +95,7 @@ Setting up the search node
         sudo service elasticsearch start
 
 
-		
+        
 
 Setting up the load balancer node (optional)
 ********************************************
@@ -108,10 +108,10 @@ Setting up a load balancer is optional. You can use a single application node or
     4. Run setup-loadbalancer.sh <domain> <contact-email>
 
     (setup-loadbalancer.sh)
-	
-	
-	.. code:: text
-	
+    
+    
+    .. code:: text
+    
         #!/bin/sh
 
         DOMAIN=$1
@@ -208,39 +208,39 @@ Setting up the application node
 
     Setting up the logsentinel service(setup.sh)
     
-	
-	.. code:: text
-	
+    
+    .. code:: text
+    
         # install Java 9
-		sudo yum -y update
-		sudo yum -y remove java
+        sudo yum -y update
+        sudo yum -y remove java
 
         # Change the open socket limits
-		sudo echo "*     soft   nofile  16384" >> /etc/security/limits.conf
-		sudo echo "*     hard   nofile  20000" >> /etc/security/limits.conf
-		sudo echo "net.ipv4.tcp_max_syn_backlog = 2048" >> /etc/sysctl.conf
+        sudo echo "*     soft   nofile  16384" >> /etc/security/limits.conf
+        sudo echo "*     hard   nofile  20000" >> /etc/security/limits.conf
+        sudo echo "net.ipv4.tcp_max_syn_backlog = 2048" >> /etc/sysctl.conf
 
         #sudo rpm -ivh /tmp/install/jdk-9_linux-x64_bin.rpm
         sudo yum install -y java-9-openjdk
 
         # setup the logsentinel service
-		adduser logsentinel
-		chown logsentinel:logsentinel /var/logsentinel/logsentinel.jar
-		ln -s /var/logsentinel/logsentinel.jar /etc/init.d/logsentinel
-		chmod +x /etc/init.d/logsentinel
+        adduser logsentinel
+        chown logsentinel:logsentinel /var/logsentinel/logsentinel.jar
+        ln -s /var/logsentinel/logsentinel.jar /etc/init.d/logsentinel
+        chmod +x /etc/init.d/logsentinel
 
-		mkdir -p /var/log/logsentinel/access
-		chmod 777 /var/log/logsentinel/access
+        mkdir -p /var/log/logsentinel/access
+        chmod 777 /var/log/logsentinel/access
 
-		service logsentinel start
-		chkconfig logsentinel on
+        service logsentinel start
+        chkconfig logsentinel on
 
 
-	(setup-nfs-client.sh)
-	
-	
-	.. code:: text
-	
+    (setup-nfs-client.sh)
+    
+    
+    .. code:: text
+    
         SERVER_IP=$1
         sudo yum -y install nfs-utils
         sudo mkdir -p /mnt/nfs/var/nfs
@@ -248,13 +248,13 @@ Setting up the application node
         sudo echo "$SERVER_IP:/var/nfs  /mnt/nfs/var/nfs   nfs      rw,sync,hard,intr  0     0" >> /etc/fstab
         ln -s /mnt/nfs/var/nfs /var/nfs
 
-		
-		
+        
+        
     (setup-nfs-server.sh)
-	
-	
-	.. code:: text
-	
+    
+    
+    .. code:: text
+    
         CLIENT_IP=$1
 
         sudo yum -y install nfs-utils
