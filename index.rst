@@ -37,6 +37,7 @@ Welcome to the LogSentinel SentinelTrails Documentation!
    :maxdepth: 2
    :caption: On-Premise Documentation
    
+   onpremise/overview
    onpremise/installation-linux
    onpremise/installation-windows
    onpremise/installation-docker
