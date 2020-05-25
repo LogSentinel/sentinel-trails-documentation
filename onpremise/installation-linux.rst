@@ -4,14 +4,14 @@ On-premise Installation on Linux
 Installing Java
 ***************
 
-	.. code:: text
-	
-		# install Java 9
-		sudo yum -y update
-		sudo yum -y remove java
+    .. code:: text
+    
+        # install Java 9
+        sudo yum -y update
+        sudo yum -y remove java
 
-		# Change the open socket limits
-		sudo echo "*     soft   nofile  16384" >> /etc/security/limits.conf
+        # Change the open socket limits
+        sudo echo "*     soft   nofile  16384" >> /etc/security/limits.conf
         sudo echo "*     hard   nofile  20000" >> /etc/security/limits.conf
         sudo echo "net.ipv4.tcp_max_syn_backlog = 2048" >> /etc/sysctl.conf
 
@@ -23,18 +23,18 @@ Installing Java
 Setting up the database node
 ****************************
 
-    1. Obtain the following files (from a dedicated S3 bucket)
-        a. cassandra-topology.properties
-        b. root.crt and root.key (or generate them)
-        c. cassandra-truststore.jks
-        d. setup-cassandra.sh
-        e. update-cassandra-cluster-config.py
-        f. cassandra.yaml.template
-    2. Place all of the files in /tmp/install/
-    3. Fill in the IP addresses of database nodes in cassandra-topology.properties
-    4. Change ${seeds} to a comma-separated list of IPs of Cassandra nodes in cassandra.yaml.template
+1. Obtain the following files (from a dedicated S3 bucket)
+	a. cassandra-topology.properties
+	b. root.crt and root.key (or generate them)
+	c. cassandra-truststore.jks
+	d. setup-cassandra.sh
+	e. update-cassandra-cluster-config.py
+	f. cassandra.yaml.template
+2. Place all of the files in /tmp/install/
+3. Fill in the IP addresses of database nodes in cassandra-topology.properties
+4. Change ${seeds} to a comma-separated list of IPs of Cassandra nodes in cassandra.yaml.template
 
-    Installing Cassandra (setup-cassandra.sh):
+Installing Cassandra (setup-cassandra.sh):
     
     .. code:: text
     
@@ -53,12 +53,12 @@ Setting up the database node
 Setting up the search node
 **************************
 
-    1. Obtain the following files (from a dedicated S3 bucket)
-        a. setup-elasticsearch.sh
-    2. Place it in /tmp/install/
-    3. Run setup-elasticsearch.sh
+1. Obtain the following files (from a dedicated S3 bucket)
+	a. setup-elasticsearch.sh
+2. Place it in /tmp/install/
+3. Run setup-elasticsearch.sh
 
-    Installing ElasticSearch (setup-elasticsearch.sh)
+Installing ElasticSearch (setup-elasticsearch.sh)
     
 
     .. code:: text
@@ -103,11 +103,12 @@ Setting up the load balancer node (optional)
 ********************************************
 
 Setting up a load balancer is optional. You can use a single application node or you can use round-robin DNS to balance between multiple nodes.  The round-robin DNS doesn’t ensure perfect high availability, as a dead node will still be referenced. If you want to setup a load balancer, we’d recommend issuing a Let’s encrypt certificate for it.
-    1. Obtain the following files (from a dedicated S3 bucket)
-        a. setup-loadbalancer.sh
-    2. Place it in /tmp/install/
-    3. Edit the IP addresses in the script (currently 10.1.0.101)
-    4. Run setup-loadbalancer.sh <domain> <contact-email>
+    
+1. Obtain the following files (from a dedicated S3 bucket)
+	a. setup-loadbalancer.sh
+2. Place it in /tmp/install/
+3. Edit the IP addresses in the script (currently 10.1.0.101)
+4. Run setup-loadbalancer.sh <domain> <contact-email>
 
     (setup-loadbalancer.sh)
     
@@ -193,23 +194,23 @@ Setting up a load balancer is optional. You can use a single application node or
 Setting up the application node
 *******************************
 
-    1. Obtain the following files (from a dedicated S3 bucket)
-        a. logsentinel-x.x.x.jar – the application node binary
-        b. sample app.properties – contains all configuration options
-        c. sample tsa-store.jks – used for local trusted timestamping
-        d. sample cassandra-truststore.jks – used for communication with Cassandra nodes
-        e. setup.sh – used to setup and run the application
-        f. logsentinel.conf – Java configuration options for the application
-        g. setup-nfs-client.sh and setup-nfs-server.sh – used for sharing files in case of multiple application nodes
-        h. jdk-9_linux-x64_bin.rpm
-    2. Place all .sh files and the rpm file in /tmp/install
-    3. Place all other files in /var/logsentinel
-    4. Configure app.properties by changing the needed properties (see below)
-    5. Run setup.sh with: > setup.sh
-    6. In case of multiple application nodes, you’d also run setup-nfs-server.sh <CLIENT_IP> and setup-nfs-client.sh <SERVER_IP> on different machine so that /var/nfs becomes a shared file system
+1. Obtain the following files (from a dedicated S3 bucket)
+	a. logsentinel-x.x.x.jar – the application node binary
+	b. sample app.properties – contains all configuration options
+	c. sample tsa-store.jks – used for local trusted timestamping
+	d. sample cassandra-truststore.jks – used for communication with Cassandra nodes
+	e. setup.sh – used to setup and run the application
+	f. logsentinel.conf – Java configuration options for the application
+	g. setup-nfs-client.sh and setup-nfs-server.sh – used for sharing files in case of multiple application nodes
+	h. jdk-9_linux-x64_bin.rpm
+2. Place all .sh files and the rpm file in /tmp/install
+3. Place all other files in /var/logsentinel
+4. Configure app.properties by changing the needed properties (see below)
+5. Run setup.sh with: > setup.sh
+6. In case of multiple application nodes, you’d also run setup-nfs-server.sh <CLIENT_IP> and setup-nfs-client.sh <SERVER_IP> on different machine so that /var/nfs becomes a shared file system
 
 
-    Setting up the logsentinel service(setup.sh)
+Setting up the logsentinel service(setup.sh)
     
     
     .. code:: text
