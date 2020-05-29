@@ -4,10 +4,10 @@ Log Collector Integration
 Integration with Kubernetes
 ***************************
 
-SentinelTrails can serve as a `Kubernetes audit log backend <https://kubernetes.io/docs/tasks/debug-application-cluster/audit/#audit-backends>`_. In order to send the audit logs, you have to configure your kubernetes cluster to send audit logs by specifying the `--audit-webhook-config-file` parameter. In the config file (which is a standard kubeconfig file) you have to specfiy:
+SentinelTrails can serve as a `Kubernetes audit log backend <https://kubernetes.io/docs/tasks/debug-application-cluster/audit/#audit-backends>`_. In order to send the audit logs, you have to configure your kubernetes cluster to send audit logs by specifying the ``--audit-webhook-config-file`` parameter. In the config file (which is a standard kubeconfig file) you have to specfiy:
 
-* URL of the webhook - `https://api.logsentinel.com/api/k8s/log?trailsApplicationId={ApplicationId}`, where ApplicationId is obtained from the API Credentials page
-* username and password for authentication - use your `organizationId` and `secret` from the API Credenetials page
+* URL of the webhook - ``https://api.logsentinel.com/api/k8s/log?trailsApplicationId={ApplicationId}``, where ApplicationId is obtained from the API Credentials page
+* username and password for authentication - use your ``organizationId`` and ``secret`` from the API Credenetials page
 
 `Here is an example webhook config file <https://gist.github.com/Glamdring/485c66d368347778ae7d7247bf475eee>`_.
 
