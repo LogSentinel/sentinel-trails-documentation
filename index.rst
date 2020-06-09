@@ -41,6 +41,7 @@ Welcome to the LogSentinel SentinelTrails Documentation!
    onpremise/installation-linux
    onpremise/installation-windows
    onpremise/installation-docker
+   onpremise/installation-vm
    onpremise/whitelabelling
    onpremise/ldap
    onpremise/security
