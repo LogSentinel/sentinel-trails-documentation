@@ -48,9 +48,15 @@ Correlation rules
 
 These rules allow for specifying a chain of events which trigger the alert. The rule is executed every X minutes (configurable) and peforms its analysis over the previous Y minute or hours (configurable).
 
-A rule starts with an initial action and/or entity. If those are met, a list of subsequent events can be specified. If all criteria are met, the alert is triggered.
+A rule starts with an initial action and/or entity. If those are met, a list of subsequent events can be specified. If all criteria are met, the alert is triggered. Each subsequent event has the following properties:
+
+* Action - the action of the particular event
+* Count - "less than" or "more than" the specified amount of events
+* Time frame - the timeframe in which the specified number of evnets (matching the specified action) should have occurred
 
 An example correlation alert can be: "If you encounter a DELETE action outside working hours, trigger an alert". Or "After an UPDATE action, trigger an alert if there are more than 10 other update actions on the same entity within the next 2 minutes by the same actor".
+
+For numeric parameters sums can be used as well. A sum action is exected at the end to addditionally confirm whether the given alert should be fired or not. A sum action is a specific type of event that contains the numeric param in sum path (JSON Path or XPath). We calculate the sum of some numeric values on all previous entries of the sum type and compare it with the current entry. If current entry value is larger than percentage of the sum then alert is triggered. This is done for every entry in the time frame.
 
 Machine learning
 ----------------
