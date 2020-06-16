@@ -39,6 +39,7 @@ Supported comparison methods include standard deviation, mean value of a fixed c
 By default the number of log entries is taken, but for numeric fields a sum or average can also be calculated. Numeric fields can be specified as GET parameters to log queries and are stored under ``additionalParams.*``. They do not have to be configured, as they are automatically extracted if a given additionl param is a number.
 
 Typical examples include:
+
 * Missing logs - look for at least 1 log entry over a configured period of time. If there's less than one (using FIXED comparison), trigger an alert
 * Anomalous log count - send an alert if there's a difference of more than 3 standard deviations from the observed base. The observed base is the "search period" in the wizard, whereas the period to compare is called "aggregation period"
 * Anomalous log count by a particular actor - same as above, but select ``actorId`` as a "Group by field". That way entries are grouped by actorId in order to compare the activity.
