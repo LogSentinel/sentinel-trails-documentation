@@ -5,7 +5,7 @@ Alerts are an important part of audit log aggregation as they allow defining ano
 
 * **Behavior rules** - specify rules for anomalous behavior over a period of time
 * **Correlation rules** - specify specific sequences of events
-* **Machine learning (experimental)** - use unsupervised machine learning to detect anomalous behavior
+* **Machine learning** - use unsupervised machine learning to detect anomalous behavior
 
 There are predefind sample rules on each of the rule-configuration screens. They set some reasonable defaults for testing purposes.
 
