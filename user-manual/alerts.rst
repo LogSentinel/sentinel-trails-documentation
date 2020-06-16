@@ -70,7 +70,7 @@ In order to enable machine learning anomaly detection, go to the "Alerts/Anomaly
 * Use original timestamp - this indicates which timestamp should be used by the algorithm. By default it uses the timestamp when the event was received by SentinelTrails; however in some cases an ``originalEventTimestamp`` can be specified (depending on the sending/collection logic that may be more accurate)
 * Use entry fields entityId and entityType for anomaly detection - some applications are able to send ``entityType`` and ``entityId`` for each log entry. This is an important feature for the machine learning model, if available. For example, it's  when the ``entityType`` and ``entityId`` are related to database records, where ``entityType`` is the table name and ``entityId`` is the primary key of the table.
 
-The algorithm used in Isolation forest, which is perfectly suited for datasets that are expected to have very few anomalies
+The algorithm used is `Isolation forest <https://en.wikipedia.org/wiki/Isolation_forest>`_, which is perfectly suited for datasets that are expected to have very few anomalies
 
 API management
 --------------
