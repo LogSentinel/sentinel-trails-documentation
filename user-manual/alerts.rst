@@ -36,7 +36,7 @@ These rules are defined via a wizard and can be expressed as follows: trigger th
 
 Supported comparison methods include standard deviation, mean value of a fixed constant. Alerts can be triggered if the observed value is eiher above, or below, or both above or below the expected normal value.
 
-By default the number of log entries is taken, but for numeric fields a sum or average can also be calculated. Numeric fields can be specified as GET parameters to log queries and are stored under ``additionalParams.*`. They do not have to be configured, as they are automatically extracted if a given additionl param is a number.
+By default the number of log entries is taken, but for numeric fields a sum or average can also be calculated. Numeric fields can be specified as GET parameters to log queries and are stored under ``additionalParams.*``. They do not have to be configured, as they are automatically extracted if a given additionl param is a number.
 
 Typical examples include:
 * Missing logs - look for at least 1 log entry over a configured period of time. If there's less than one (using FIXED comparison), trigger an alert
