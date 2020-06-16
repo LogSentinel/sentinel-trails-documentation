@@ -64,3 +64,8 @@ In order to enable machine learning anomaly detection, go to the "Alerts/Anomaly
 * Use entry fields entityId and entityType for anomaly detection - some applications are able to send ``entityType`` and ``entityId`` for each log entry. This is an important feature for the machine learning model, if available. For example, it's  when the ``entityType`` and ``entityId`` are related to database records, where ``entityType`` is the table name and ``entityId`` is the primary key of the table.
 
 The algorithm used in Isolation forest, which is perfectly suited for datasets that are expected to have very few anomalies
+
+API management
+--------------
+
+Alerts can be managed through API calls in addition to the UI wizard. `The API reference is available here <https://api.logsentinel.com/api#/Alerts>`_
