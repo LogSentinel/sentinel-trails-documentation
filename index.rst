@@ -55,6 +55,7 @@ Welcome to the LogSentinel SentinelTrails Documentation!
    :caption: User Manual
    
    user-manual/dashboard
+   user-manual/user-profile
    user-manual/applications
    user-manual/user-management
    user-manual/organization
