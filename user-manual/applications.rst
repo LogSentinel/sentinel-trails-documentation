@@ -12,6 +12,7 @@ Applications are created and configured from the "Applications" menu. Each appli
 * **Storing personal data** - this is an indicator that the application may contain personal data.
 * **Verification periods** - how often should full and partial background verifications run. If you have a lot of data it's recommended that full verifications is done rarely, as it puts significant load on the system (in case of on-premise setups).
 * **Warn log level** - whether admins should be warned in case a log level above a certain threshold is received
+* **Data masking patterns** - a list of data masking patterns to replace sensitive data with placeholders
 * **JavaScript body transformation** - allows users to specify javascript that prettifies the log details for easier reading. By default JSON-to-table and XML-to-table scripts are supported
 * **Displayed details fields** - this allows configuring a comma-separated list of fields that should be displayed on the dashboard for JSON bodies. This is useful in case of noisy log messages that contain less useful information. If you specify a whitelist of fields, all others is stored and searchable, but not displayed by default.
 * **List of recipients of verification reports** - a list of emails to receive verification reports for this application
