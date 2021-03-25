@@ -93,6 +93,7 @@ Inserting a single entry
 		.. code-block:: python
 			
 			import requests
+			from requests.auth import HTTPBasicAuth
 			url = 'https://app.logsentinel.com/api/log/' + actorId + '/' + action + '/' + entityType + '/' + entityId;
 			data = '''{
 			  "detail1": "detail 1",
